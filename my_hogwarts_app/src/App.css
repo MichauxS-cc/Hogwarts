@@ -1,38 +1,60 @@
-.App {
-  text-align: center;
+/* -----------------------------------------
+Default style
+-------------------------------------------- */
+html {
+    font-size: 16px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background: url(pics/HogwartsBG-1.jpg) top no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 100;
+}
+/* every tag */
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+body {
+    margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+    --primary-color: #caa75b;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* -----------------------------------------
+Typpgraphy
+-------------------------------------------- */
+h1 {
+    color: black;
+    height: 80px;
+    background: url(pics/burnPaper.png) center no-repeat;
+    background-size: 375px 100%;
+    margin-top: 30px;
+    text-align: center;
+    font-family: "Brush Script MT", cursive;
+    font-family: fantasy;
+    font-size: 24px;
+    font-variant: normal;
+    font-weight: bold;
+    line-height: 480%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* -----------------------------------------
+Layout
+-------------------------------------------- */
+.max-container {
+    max-width: 1200px;
+    margin: auto;
 }
-
-.App-link {
-  color: #61dafb;
+.flex {
+    display: flex;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.flex.right {
+    justify-content: flex-end;
+    width: 100%;
 }
