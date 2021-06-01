@@ -4,7 +4,6 @@
     position: relative;
     padding: 5px;
 }
-
 .house-wrapper {
     width: 100%;
     height: 55vw;
@@ -18,8 +17,8 @@
 .house-wrapper:hover .house-img {
     filter: brightness(50%);
 }
-.house-list .house-img {
-    position: absolute;
+.house-img {
+    position: absolute; /*to house-container, so wrapper will ignor it*/
     top: 0;
     left: 0;
     height: 100%;
@@ -28,19 +27,12 @@
     transition: 0.3s;
     object-fit: cover;
 }
-.house {
-    z-index: 1;
-    opacity: 0;
-    transition: 0.3s;
-}
-.house-wrapper:hover .house {
-    opacity: 1;
-}
 .house-description {
     z-index: 1;
     opacity: 0;
     transition: 0.3s;
     color: white;
+    font-weight: 400;
 }
 .house-wrapper:hover .house-description {
     opacity: 1;

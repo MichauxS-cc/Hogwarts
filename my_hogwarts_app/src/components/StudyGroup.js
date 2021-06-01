@@ -1,40 +1,70 @@
-import React, { useState, useRef } from "react";
-import BuddyList from "./BuddyList";
+import React, { useState, useRef, useEffect } from "react";
+import "../css/StudyGroup.css";
+import BuddyList from "./BuddyList.js";
+import Modal from "./Modal.js";
+import initialBuddyList from "../initial.json";
 
 function StudyGroup() {
-    const initial = [
-        {
-            name: "Harry Potter",
-            imgURL: "https://static.wikia.nocookie.net/23b32650-e2fd-4b44-bbc5-41d74b5ff6c3",
-        },
-        {
-            name: "Hermione Granger",
-            imgURL: "https://img.24sata.hr/zKPRk4Q2jaPf8ufhvHMoylLqvNM=/1920x0/smart/media/images/src/20131041/1700ee608d7ccb3ad9c2fac71bbf79cc.jpg",
-        },
-        {
-            name: "Ronald Weasley",
-            imgURL: "https://images.ctfassets.net/usf1vwtuqyxm/4kRGmTOvVYmIwsOikwcuUw/b0851098837ddac5951a15ebc2ab82cf/Ron_Weasley_WB_F1_Ron_with_Scabbers_on_shoulder_00393692.jpg",
-        },
-        {
-            name: "Malfoy Draco",
-            imgURL: "https://cdn.newsapi.com.au/image/v1/a1d257d1618b572e1b81dc99134d8a06?width=316",
-        },
-    ];
-    const [buddyList, setBuddyList] = useState(initial);
-    const inputName = useRef(null);
+    const [buddyList, setBuddyList] = useState([]);
+    const inputName = useRef(); //to get userinput
+    const inputImgURL = useRef();
 
+    const [modal, setModal] = useState({ visible: false, name: "", imgURL: "", description: "" });
+
+    useEffect(() => {
+        setBuddyList(initialBuddyList);
+    }, []); // on first refresh
+
+    // add card to buddyList by creating a new array with the new user input
+    //input name, imgURL
     function addCard(event) {
-        console.log(event.target.value);
-        setBuddyList(
-            buddyList.concat({
-                name: "Malfoy D",
-                imgURL: "https://cdn.newsapi.com.au/image/v1/a1d257d1618b572e1b81dc99134d8a06?width=316",
-            })
-        );
+        let name = inputName.current.value;
+        let imgURL = inputImgURL.current.value;
+
+        if (name === "" || imgURL === "") return;
+
+        setBuddyList((prevBuddyList) => {
+            return [...prevBuddyList, { name, imgURL }]; //"..." deconstruct; deep copy
+        });
+
+        inputName.current.value = inputImgURL.current.value = null;
     }
-    function removeCard() {}
-    function removeAll() {
+
+    function removeCard() {
+        let removeName = inputName.current.value;
+
+        // create a new buddy list by filtering out the buddy with the given removeName
+        let newBuddyList = [...buddyList].filter((buddy) => {
+            if (buddy.name !== removeName) return buddy;
+        });
+
+        setBuddyList(newBuddyList);
+
+        inputName.current.value = inputImgURL.current.value = null;
+    }
+
+    function clearInput() {
+        inputName.current.value = inputImgURL.current.value = null;
+    }
+
+    function clearAll() {
         setBuddyList([]);
+    }
+
+    // card click handler
+    function showModal(name, imgURL, description) {
+        let newModal = { ...modal };
+        newModal.visible = true;
+        newModal.name = name;
+        newModal.imgURL = imgURL;
+        newModal.description = description;
+        setModal(newModal);
+    }
+
+    function closeModal() {
+        let newModal = { ...modal };
+        newModal.visible = false;
+        setModal(newModal);
     }
 
     return (
@@ -53,7 +83,7 @@ function StudyGroup() {
                         Address (URL):
                     </label>
                     <br />
-                    <input type="text" id="card-URL" name="url" />
+                    <input ref={inputImgURL} type="text" id="card-URL" name="url" />
                     <br />
                     <br />
                 </div>
@@ -64,15 +94,18 @@ function StudyGroup() {
                     <button onClick={() => removeCard()} className="btn btn-remove" type="button">
                         Remove
                     </button>
-                    <button onClick={() => removeAll()} className="btn btn-remove-all" type="button">
-                        Clear
+
+                    <button onClick={() => clearInput()} className="btn btn-clear-input" type="button">
+                        Clear Input
+                    </button>
+                    <button onClick={() => clearAll()} className="btn btn-clear-all" type="button">
+                        Clear All
                     </button>
                 </div>
             </form>
 
-            <div className="card-deck" id="img-container">
-                <BuddyList buddyList={buddyList} />
-            </div>
+            <BuddyList buddyList={buddyList} showModal={showModal} />
+            <Modal modal={modal} closeModal={closeModal} />
         </div>
     );
 }

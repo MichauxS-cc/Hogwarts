@@ -11,16 +11,24 @@ function Header() {
             </div>
             <ul id="menu-list">
                 <li>
-                    <Link to="/home">Home</Link>
+                    <Link to="/home" className="header-links">
+                        Home
+                    </Link>
                 </li>
                 <li>
-                    <a href="/About.html">About</a>
+                    <Link to="/about" className="header-links">
+                        About
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/study-group">Study Group</Link>
+                    <Link to="/study-group" className="header-links">
+                        Study Group
+                    </Link>
                 </li>
                 <li>
-                    <a href="/Course.html">Course</a>
+                    <Link to="/courses" className="header-links">
+                        Courses
+                    </Link>
                 </li>
             </ul>
 

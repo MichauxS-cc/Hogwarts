@@ -1,0 +1,10 @@
+/* About page video */
+.video-container {
+    display: block;
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+}
+.intro-video {
+    width: 80%;
+}

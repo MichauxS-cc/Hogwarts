@@ -1,0 +1,54 @@
+/* -----------------------------------------
+Navigation
+-------------------------------------------- */
+.topbar {
+    background-color: var(--primary-color);
+    color: white;
+    overflow: hidden;
+    position: relative;
+    height: 7vh;
+}
+.toptext {
+    padding: 0.3rem 2rem;
+    font-size: 14px;
+    font-weight: 400;
+    /****************************Start here, code borrowed from: https://colibriwp.com/blog/scrolling-text/ ; 5.24 22:20 PM*/
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    /* Apply animation to this element */
+    -moz-animation: toptext 20s linear infinite;
+    -webkit-animation: toptext 20s linear infinite;
+    animation: toptext 20s linear infinite;
+    white-space: nowrap;
+}
+/* Move it (define the animation) */
+@-moz-keyframes toptext {
+    0% {
+        -moz-transform: translateX(100%);
+    }
+    100% {
+        -moz-transform: translateX(-100%);
+    }
+}
+@-webkit-keyframes toptext {
+    0% {
+        -webkit-transform: translateX(100%);
+    }
+    100% {
+        -webkit-transform: translateX(-100%);
+    }
+}
+@keyframes toptext {
+    0% {
+        -moz-transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+    }
+    100% {
+        -moz-transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
+}
+/****************************End here, code borrowed from: https://colibriwp.com/blog/scrolling-text/ */

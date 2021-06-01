@@ -1,8 +1,14 @@
+import "../css/Buddy.css";
+
 function Buddy(props) {
+    function handleClick() {
+        props.showModal(props.name, props.imgURL, props.description);
+    }
+
     return (
-        <div className="buddy-container">
+        <div className="buddy-container" onClick={handleClick}>
             <div className="buddy-wrapper">
-                <img src={props.imgURL} alt="blah" className="img" />
+                <img className="buddy-img" src={props.imgURL} alt={props.name} />
                 <div className="buddy-name">{props.name}</div>
             </div>
         </div>

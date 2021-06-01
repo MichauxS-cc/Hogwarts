@@ -1,0 +1,128 @@
+/* -----------------------------------------
+btn layout
+-------------------------------------------- */
+.flex {
+    display: flex;
+}
+.flex.right {
+    justify-content: flex-end;
+    width: 100%;
+}
+
+/* -----------------------------------------
+Home and Study group - card selection
+-------------------------------------------- */
+.card-selection {
+    margin: 50px 0px;
+    padding: 20px;
+    color: white;
+    display: block;
+}
+.card-selection form {
+    display: flex;
+    flex-wrap: wrap;
+}
+.card-selection .card-input-wrapper {
+    width: 100%;
+}
+.card-selection input {
+    height: 20px;
+    width: 100%;
+    margin: 10px 00px;
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 20px;
+}
+/* Desktop */
+@media only screen and (min-width: 768px) {
+    .card-selection .card-input-wrapper {
+        width: 50%;
+    }
+}
+
+label {
+    font-weight: 400;
+    font-size: 1rem;
+}
+#cname {
+    width: 20%;
+}
+/* Button */
+.btn {
+    height: 60px;
+    width: 120px;
+    background: url("../pics/burnPaper.png") center no-repeat;
+    background-size: 100% 100%;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-family: "Brush Script MT", cursive;
+    font-family: fantasy;
+    font-weight: bold;
+    font-size: 16px;
+    transition: 0.3s;
+}
+.btn:hover {
+    transform: scale(1.2);
+}
+
+/* Home card-selection */
+.card-selection .card-deck {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+.card-deck {
+    padding: 20px;
+    position: relative;
+}
+.card-selection .card-container {
+    width: 50%;
+    height: 100%;
+    position: relative;
+    padding: 5px;
+}
+.char-text-wrapper {
+    width: 100%;
+    height: 55vw;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+}
+.char-text-wrapper:hover .card-img {
+    filter: brightness(50%);
+}
+.card-deck .card-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    transition: 0.3s;
+    object-fit: cover;
+}
+.char-text {
+    z-index: 1;
+    opacity: 0;
+    transition: 0.3s;
+    color: white;
+}
+.char-text-wrapper:hover .char-text {
+    opacity: 1;
+}
+
+/* Desktop */
+@media only screen and (min-width: 768px) {
+    .card-selection .card-container {
+        width: 25%;
+    }
+    .char-text-wrapper {
+        height: 30vw;
+        max-height: 340px;
+    }
+}
