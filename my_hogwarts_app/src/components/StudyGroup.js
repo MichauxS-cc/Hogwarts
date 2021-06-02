@@ -17,7 +17,7 @@ function StudyGroup() {
 
     // add card to buddyList by creating a new array with the new user input
     //input name, imgURL
-    function addCard(event) {
+    function addCard() {
         let name = inputName.current.value;
         let imgURL = inputImgURL.current.value;
 

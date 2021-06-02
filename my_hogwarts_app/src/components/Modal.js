@@ -13,9 +13,15 @@ function Modal(props) {
             <button onClick={handleClick} className="modal-close">
                 +
             </button>
-            <img className="modal-img" src={props.modal.imgURL} />
-            <h3 className="modal-name">{props.modal.name}</h3>
-            <p className="modal-description">{props.modal.description}</p>
+            <div className="modal-card-container">
+                <div className="modal-img-wrapper">
+                    <img className="modal-img" src={props.modal.imgURL} />
+                </div>
+                <div className="modal-text-wrapper">
+                    <h3 className="modal-name">{props.modal.name}</h3>
+                    <p className="modal-description">{props.modal.description}</p>
+                </div>
+            </div>
         </div>
     );
 }

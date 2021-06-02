@@ -6,6 +6,7 @@ import Home from "./components/Home.js";
 import About from "./components/About.js";
 import StudyGroup from "./components/StudyGroup.js";
 import Courses from "./components/Courses.js";
+import DiagonAlley from "./components/DiagonAlley.js";
 
 function App() {
     return (
@@ -25,6 +26,9 @@ function App() {
                     </Route>
                     <Route path="/courses">
                         <Courses />
+                    </Route>
+                    <Route path="/diagon-alley">
+                        <DiagonAlley />
                     </Route>
                 </Switch>
             </Router>

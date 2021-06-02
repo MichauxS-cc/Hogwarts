@@ -1,0 +1,49 @@
+/*TODO need to be changed*/
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    color: white;
+}
+
+.col-1 {
+    flex: 1;
+}
+
+.col-2 {
+    flex: 2;
+}
+
+.block {
+    background: url(../pics/shoppingBG.png) center no-repeat;
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.row.center {
+    align-items: center;
+}
+
+.equip-img {
+    width: 150px;
+    height: 150px;
+}
+
+button {
+    cursor: pointer;
+    text-align: center;
+}
+
+button.add {
+    background-color: #40c0f0;
+    width: 1.5rem;
+}
+button.remove {
+    background-color: #f04040;
+    width: 1.5rem;
+}
+text-right {
+    text-align: right;
+}
+/*TODO need to be changed*/

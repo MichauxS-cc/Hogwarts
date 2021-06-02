@@ -30,6 +30,11 @@ function Header() {
                         Courses
                     </Link>
                 </li>
+                <li>
+                    <Link to="/diagon-alley" className="header-links">
+                        Diagon Alley
+                    </Link>
+                </li>
             </ul>
 
             <div className="menu-icon" id="menu-bar">
