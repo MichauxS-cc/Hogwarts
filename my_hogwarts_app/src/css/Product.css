@@ -4,9 +4,34 @@
     position: relative;
     padding: 5px;
 }
+.equipment-wrapper {
+    width: 100%;
+    height: 55vw;
+    display: block;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+    font-weight: 400;
+}
+.product-btn {
+    cursor: pointer;
+    text-align: center;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 90px;
+    color: white;
+    padding: 10px;
+    box-shadow: 5px 10px 8px #888888;
+}
 
 @media only screen and (min-width: 768px) {
     .equipment-container {
         width: 25%;
+    }
+    .equipment-wrapper {
+        height: 30vw;
+        max-height: 340px;
     }
 }

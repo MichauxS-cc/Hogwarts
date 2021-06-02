@@ -1,0 +1,22 @@
+.modal-container {
+    color: black;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.calculation {
+    color: black;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.checkout-btn {
+    cursor: pointer;
+    text-align: center;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 90px;
+    color: white;
+    padding: 10px;
+    box-shadow: 5px 10px 8px #888888;
+}

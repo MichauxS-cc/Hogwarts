@@ -1,9 +1,9 @@
 /*TODO need to be changed*/
 .row {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: nowrap;
-    color: white;
+    color: black;
 }
 
 .col-1 {
@@ -30,18 +30,26 @@
     height: 150px;
 }
 
-button {
+/* button {
     cursor: pointer;
     text-align: center;
-}
+} */
 
 button.add {
-    background-color: #40c0f0;
+    background-color: lightblue;
     width: 1.5rem;
+    border: none;
+    border-radius: 90px;
+    cursor: pointer;
+    padding: 5px;
 }
 button.remove {
-    background-color: #f04040;
+    background-color: pink;
     width: 1.5rem;
+    border: none;
+    border-radius: 90px;
+    cursor: pointer;
+    padding: 5px;
 }
 text-right {
     text-align: right;
