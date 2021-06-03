@@ -15,7 +15,10 @@
     position: relative;
     font-weight: 400;
 }
-.product-btn {
+.equip-img {
+    object-fit: cover;
+}
+.equipment-btn {
     cursor: pointer;
     text-align: center;
     background: var(--primary-color);

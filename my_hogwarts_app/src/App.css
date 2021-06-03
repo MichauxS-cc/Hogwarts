@@ -32,16 +32,16 @@ Typpgraphy
 h1 {
     color: black;
     height: 80px;
-    background: url(pics/burnPaper.png) center no-repeat;
+    /* background: url(pics/burnPaper.png) center no-repeat; */
     background-size: 375px 100%;
     margin-top: 30px;
     text-align: center;
-    font-family: "Brush Script MT", cursive;
+    /* font-family: "Brush Script MT", cursive;
     font-family: fantasy;
     font-size: 24px;
     font-variant: normal;
     font-weight: bold;
-    line-height: 480%;
+    line-height: 480%; */
 }
 
 /* -----------------------------------------

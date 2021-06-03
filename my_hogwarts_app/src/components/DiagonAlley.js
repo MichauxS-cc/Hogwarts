@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import "../css/DiagonAlley.css";
-import Main from "./Main.js";
+import EquipList from "./EquipList.js";
 import Cauldron from "./Cauldron.js";
 import ShoppingCart from "./ShoppingCart.js";
 import equipmentDatabase from "./equipmentDatabase.js";
@@ -48,19 +48,24 @@ function DiagonAlley() {
     return (
         <div>
             <div className="max-container">
-                <h1>Equipments</h1>
-                <ShoppingCart countEquipments={cartItems.length} showModal={showSummery} />
+                <h1>
+                    <img
+                        src="https://see.fontimg.com/api/renderfont4/MVZ6w/eyJyIjoiZnMiLCJoIjo3NiwidyI6MTAwMCwiZnMiOjc2LCJmZ2MiOiIjRDBBQjIyIiwiYmdjIjoiI0YzMTkxOSIsInQiOjF9/R2V0IFlvdXIgRXNzZW50aWFscyBBdCBEaWFnb24gQWxsZXk/harry-p.png"
+                        alt="Harry Potter fonts"
+                    ></img>
+                    <ShoppingCart countEquipments={cartItems.length} showModal={showSummery} />
+                </h1>
+                <div>
+                    <EquipList addToCauldron={addToCauldron} equipments={equipments} />
+                </div>
+                <Cauldron
+                    modal={modal}
+                    closeModal={closeModal}
+                    addToCauldron={addToCauldron}
+                    removeFromCauldron={removeFromCauldron}
+                    cartItems={cartItems}
+                />
             </div>
-            <div>
-                <Main addToCauldron={addToCauldron} equipments={equipments} />
-            </div>
-            <Cauldron
-                modal={modal}
-                closeModal={closeModal}
-                addToCauldron={addToCauldron}
-                removeFromCauldron={removeFromCauldron}
-                cartItems={cartItems}
-            />
         </div>
     );
 }

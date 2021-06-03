@@ -6,7 +6,12 @@ import DefenceAgainstTheDarkArts from "../pics/Defence Against the Dark Arts.png
 function Courses() {
     return (
         <div className="max-container">
-            <h1>Core Classes</h1>
+            <h1>
+                <img
+                    src="https://see.fontimg.com/api/renderfont4/MVZ6w/eyJyIjoiZnMiLCJoIjo4NSwidyI6MTAwMCwiZnMiOjg1LCJmZ2MiOiIjRDBBQjIyIiwiYmdjIjoiI0YzMTkxOSIsInQiOjF9/Q29yZSBDbGFzc2Vz/harry-p.png"
+                    alt="Harry Potter fonts"
+                ></img>
+            </h1>
 
             <div className="course-list">
                 <Acourse

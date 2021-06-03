@@ -1,10 +1,10 @@
 {
     "folders": [
 		{
-			"path": "../.."
+			"path": "../../.."
 		},
 		{
-			"path": "../../../../HTML:CSS:JS/CPSC455-A1"
+			"path": "../../../../A1-HTML:CSS:JS/CPSC455-A1"
 		}
 	],
     "settings": {}

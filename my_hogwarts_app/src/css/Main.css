@@ -1,7 +1,0 @@
-.equipment-list {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    background: url(../pics/shoppingBG.png) center no-repeat;
-    background-size: 100%;
-}

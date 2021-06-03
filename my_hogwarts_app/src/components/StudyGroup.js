@@ -69,6 +69,12 @@ function StudyGroup() {
 
     return (
         <div className="card-selection">
+            <h1>
+                <img
+                    src="https://see.fontimg.com/api/renderfont4/MVZ6w/eyJyIjoiZnMiLCJoIjo3OCwidyI6MTAwMCwiZnMiOjc4LCJmZ2MiOiIjRDBBQjIyIiwiYmdjIjoiI0YzMTkxOSIsInQiOjF9/Q2hvb3NlIFlvdXIgU3R1ZHkgQnVkZHk/harry-p.png"
+                    alt="Harry Potter fonts"
+                ></img>
+            </h1>
             <form id="card-selection-form">
                 <div className="card-input-wrapper">
                     <label id="name-label" forhtml="card-name">

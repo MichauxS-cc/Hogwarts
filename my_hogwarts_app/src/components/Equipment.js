@@ -1,8 +1,8 @@
 // logic were borrow from https://www.youtube.com/watch?v=AmIdY1Eb8tY
 
-import "../css/Product.css";
+import "../css/Equipment.css";
 
-function Product(props) {
+function Equipment(props) {
     const { equipment, addToCauldron } = props;
     return (
         <div className="equipment-container">
@@ -11,7 +11,7 @@ function Product(props) {
                 <h3>{equipment.name}</h3>
                 <div>${equipment.price}</div>
                 <div>
-                    <button className="product-btn" onClick={() => addToCauldron(equipment)}>
+                    <button className="equipment-btn" onClick={() => addToCauldron(equipment)}>
                         Add To Cauldron
                     </button>
                 </div>
@@ -20,4 +20,4 @@ function Product(props) {
     );
 }
 
-export default Product;
+export default Equipment;
