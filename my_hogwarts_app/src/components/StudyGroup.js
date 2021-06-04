@@ -6,17 +6,17 @@ import initialBuddyList from "../initial.json";
 
 function StudyGroup() {
     const [buddyList, setBuddyList] = useState([]);
-    const inputName = useRef(); //to get userinput
+    const inputName = useRef(); //to get user input
     const inputImgURL = useRef();
 
     const [modal, setModal] = useState({ visible: false, name: "", imgURL: "", description: "" });
 
     useEffect(() => {
-        setBuddyList(initialBuddyList);
+        setBuddyList(initialBuddyList); //set buddyList with initialBuddyList
     }, []); // on first refresh
 
     // add card to buddyList by creating a new array with the new user input
-    //input name, imgURL
+    // input: name, imgURL
     function addCard() {
         let name = inputName.current.value;
         let imgURL = inputImgURL.current.value;
@@ -24,6 +24,7 @@ function StudyGroup() {
         if (name === "" || imgURL === "") return;
 
         setBuddyList((prevBuddyList) => {
+            // TODO why it knows prevBuddyList is buddyList???
             return [...prevBuddyList, { name, imgURL }]; //"..." deconstruct; deep copy
         });
 

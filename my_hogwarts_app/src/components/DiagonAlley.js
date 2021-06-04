@@ -1,9 +1,9 @@
 // addToCauldron() and removeFromCauldron() logic were borrow from https://www.youtube.com/watch?v=AmIdY1Eb8tY
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import "../css/DiagonAlley.css";
 import EquipList from "./EquipList.js";
-import Cauldron from "./Cauldron.js";
+import Summery from "./Summery.js";
 import ShoppingCart from "./ShoppingCart.js";
 import equipmentDatabase from "./equipmentDatabase.js";
 
@@ -11,7 +11,8 @@ function DiagonAlley() {
     const { equipments } = equipmentDatabase;
     const [cartItems, setCartItems] = useState([]);
     const [modal, setModal] = useState({ visible: false });
-    //function accept the equip that needs to be added to the cart
+
+    // accept the equip that needs to be added to the cart
     // exist is to try to find the item x, whose name === the equip.name that I need to add
     // if exist, increase the quantity of that equip
     const addToCauldron = (equip) => {
@@ -27,7 +28,7 @@ function DiagonAlley() {
     const removeFromCauldron = (equip) => {
         const exist = cartItems.find((x) => x.name === equip.name);
         if (exist.qty === 1) {
-            setCartItems(cartItems.filter((x) => x.name !== equip.name));
+            setCartItems([...cartItems].filter((x) => x.name !== equip.name));
         } else {
             setCartItems(cartItems.map((x) => (x.name === equip.name ? { ...exist, qty: exist.qty - 1 } : x)));
         }
@@ -58,7 +59,7 @@ function DiagonAlley() {
                 <div>
                     <EquipList addToCauldron={addToCauldron} equipments={equipments} />
                 </div>
-                <Cauldron
+                <Summery
                     modal={modal}
                     closeModal={closeModal}
                     addToCauldron={addToCauldron}
