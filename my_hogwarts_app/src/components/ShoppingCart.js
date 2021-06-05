@@ -7,7 +7,7 @@ function ShoppingCart(props) {
         props.showModal();
     }
     return (
-        <div className="shopping-cart flex right" onClick={handleClick}>
+        <div className="shopping-cart" onClick={handleClick}>
             <img className="shopping-cart-img" src={ShoopingCart} alt="Shoping Cart" />
             <button className="counting-btn">{countEquipments ? countEquipments : "0"}</button>
         </div>

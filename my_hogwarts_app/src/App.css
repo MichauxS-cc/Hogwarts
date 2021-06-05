@@ -26,12 +26,16 @@ body {
     --primary-color: #caa75b;
 }
 
+.header-img {
+    width: 90%;
+    max-width: 720px;
+}
 /* -----------------------------------------
 Typpgraphy
 -------------------------------------------- */
 h1 {
     color: black;
-    height: 80px;
+    /* height: 80px; */
     /* background: url(pics/burnPaper.png) center no-repeat; */
     background-size: 375px 100%;
     margin-top: 30px;
@@ -48,7 +52,7 @@ h1 {
 Layout
 -------------------------------------------- */
 .max-container {
-    max-width: 1200px;
+    max-width: 900px;
     margin: auto;
 }
 .flex {

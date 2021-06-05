@@ -6,6 +6,7 @@ import EquipList from "./EquipList.js";
 import Summery from "./Summery.js";
 import ShoppingCart from "./ShoppingCart.js";
 import equipmentDatabase from "./equipmentDatabase.js";
+import HarryPotterFontImg from "../pics/harry-potter-font-img.png";
 
 function DiagonAlley() {
     const { equipments } = equipmentDatabase;
@@ -50,13 +51,13 @@ function DiagonAlley() {
         <div>
             <div className="max-container">
                 <h1>
-                    <img
-                        src="https://see.fontimg.com/api/renderfont4/MVZ6w/eyJyIjoiZnMiLCJoIjo3NiwidyI6MTAwMCwiZnMiOjc2LCJmZ2MiOiIjRDBBQjIyIiwiYmdjIjoiI0YzMTkxOSIsInQiOjF9/R2V0IFlvdXIgRXNzZW50aWFscyBBdCBEaWFnb24gQWxsZXk/harry-p.png"
-                        alt="Harry Potter fonts"
-                    ></img>
-                    <ShoppingCart countEquipments={cartItems.length} showModal={showSummery} />
+                    <div>
+                        <img className="header-img" src={HarryPotterFontImg} alt="Harry Potter fonts"></img>
+                    </div>
                 </h1>
-                <div>
+                <div className="overlay-black">
+                    <ShoppingCart countEquipments={cartItems.length} showModal={showSummery} />
+
                     <EquipList addToCauldron={addToCauldron} equipments={equipments} />
                 </div>
                 <Summery

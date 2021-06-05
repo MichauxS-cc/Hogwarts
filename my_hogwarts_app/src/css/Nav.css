@@ -50,21 +50,27 @@ Navigation
     }
 }
 /****************************End here, code borrowed from: https://colibriwp.com/blog/scrolling-text/ */
+/* -----------------------------------------
+Desktop View
+-------------------------------------------- */
 .logo-container img {
     width: 200px;
     padding: 10px 10px;
     position: relative;
 }
-nav {
-    width: 100%;
-    text-align: center;
-    align-items: center;
-    display: flex;
-    justify-content: space-around;
+.nav-desktop {
     background-color: black;
     border-bottom: 4px solid var(--primary-color);
 }
-nav ul {
+.nav-desktop .nav-inner {
+    width: 100%;
+    /* max-width: 1200px; */
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.nav-desktop ul {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -85,51 +91,90 @@ nav ul {
     transform: scale(1.3);
     text-shadow: 2px 2px 5px orange, 0 0 35px rgb(250, 171, 97), 0 0 5px rgb(250, 223, 68);
 }
+
+/* -----------------------------------------
+Mobile View
+-------------------------------------------- */
+.nav-mobile {
+    background-color: black;
+    border-bottom: 4px solid var(--primary-color);
+    position: relative;
+}
 /* hamburger icon */
+.menu-icon {
+    display: block;
+    position: absolute;
+    left: 30px;
+    top: 22px;
+    padding: 8px 8px 4px;
+}
+.menu-icon:hover {
+    /* box-shadow: 2px 2px 5px orange, 0 0 35px rgb(250, 171, 97), 0 0 5px rgb(250, 223, 68); */
+}
+.menu-icon.active .menu-line:first-child {
+    transform: translate(0px, 9px) rotate(45deg);
+}
+.menu-icon.active .menu-line:nth-child(2) {
+    transform: translate(0px, 1px) rotate(135deg);
+}
+.menu-icon.active .menu-line:last-child {
+    opacity: 0;
+}
+
 .menu-line {
     width: 30px;
     height: 3px;
     background-color: var(--primary-color);
     margin-bottom: 5px;
+    transition: 0.3s;
 }
-.menu-icon {
+.nav-mobile .logo-container {
+    width: 100%;
+    text-align: center;
+}
+.nav-mobile li {
+    display: block;
+    padding: 12px;
+    margin-left: 0%;
+    border-top: 1.5px solid var(--primary-color);
+}
+.nav-mobile ul {
+    width: 100%;
+    /* height: 100vh; */
+    position: absolute;
+    top: 68px;
+    left: 0;
+    z-index: 1;
+
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    background-color: black;
     display: none;
 }
-/* mobile nav */
-@media all and (max-width: 600px) {
-    nav {
-        flex-direction: column;
-        position: relative;
-    }
-    nav .logo-container {
-        width: 100%;
-    }
-    #menu-list {
-        width: 60%;
-    }
-    nav li {
-        display: block;
-        padding: 12px;
-        margin-left: 0%;
-        border-top: 1.5px solid var(--primary-color);
-    }
-    nav ul {
-        width: 100%;
-        text-align: center;
-        list-style: none;
+.nav-mobile.active ul {
+    display: block;
+}
+
+/* TODO: come back after redux */
+/* body {
+    height: 100%;
+    overflow: hidden;
+} */
+
+.showMenu {
+    display: block;
+}
+
+/* hide mobile nav */
+@media all and (min-width: 481px) {
+    .nav-mobile {
         display: none;
     }
-    .showMenu {
-        display: block;
-    }
-    .menu-icon {
-        display: block;
-        position: absolute;
-        left: 30px;
-        top: 30px;
-        padding: 8px 8px 4px;
-    }
-    .menu-icon:hover {
-        box-shadow: 2px 2px 5px orange, 0 0 35px rgb(250, 171, 97), 0 0 5px rgb(250, 223, 68);
+}
+/* hide desktop nav */
+@media all and (max-width: 480px) {
+    .nav-desktop {
+        display: none;
     }
 }

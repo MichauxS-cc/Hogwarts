@@ -1,22 +1,19 @@
 .shopping-cart {
-    position: absolute;
-    top: 25%;
-    left: -10%;
-    right: inherit;
+    margin: 0rem 1rem 0 auto;
+    position: relative;
+    width: 50px;
 }
 .shopping-cart-img {
-    width: 50px;
-    height: 50px;
+    width: 100%;
+    height: 100%;
+    margin-top: 0.6rem;
+    object-fit: contain;
     cursor: pointer;
 }
-.flex {
-    display: flex;
-}
-.flex.right {
-    justify-content: flex-end;
-    width: 100%;
-}
 .counting-btn {
+    position: absolute;
+    top: 0.3rem;
+    right: -0.6rem;
     width: 30px;
     height: 30px;
     border: none;

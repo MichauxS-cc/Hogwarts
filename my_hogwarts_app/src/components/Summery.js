@@ -63,7 +63,7 @@ function Summery(props) {
                         </div>
                         <hr />
                         <div className="flex">
-                            <button className="checkout-btn" onClick={() => alert("Order Resieved!")}>
+                            <button className="checkout-btn" onClick={() => alert("Order Received!")}>
                                 Checkout
                             </button>
                         </div>
