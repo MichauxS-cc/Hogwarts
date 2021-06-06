@@ -1,8 +1,13 @@
 // layout and logic were borrow from https://www.youtube.com/watch?v=AmIdY1Eb8tY
 import "../css/Summery.css";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCauldron, removeFromCauldron } from "../actions/ShoppingCartAction.js";
 
 function Summery(props) {
-    const { cartItems, addToCauldron, removeFromCauldron } = props;
+    const cartItems = useSelector((state) => state.cartItems);
+    const dispatch = useDispatch();
+
+    // const { cartItems, addToCauldron, removeFromCauldron } = props;
     const itemsPrice = cartItems.reduce((accumulator, currentItem) => accumulator + currentItem.price * currentItem.qty, 0);
     const taxPrice = itemsPrice * 0.12;
     const shippingPrice = itemsPrice > 10000 ? 0 : 50;
@@ -26,10 +31,10 @@ function Summery(props) {
                     <div key={item.name} className="flex">
                         <div className="col-2">{item.name}</div>
                         <div className="col-2">
-                            <button className="add-btn" onClick={() => addToCauldron(item)}>
+                            <button className="add-btn" onClick={() => dispatch(addToCauldron(item))}>
                                 +
                             </button>
-                            <button className="remove-btn" onClick={() => removeFromCauldron(item)}>
+                            <button className="remove-btn" onClick={() => dispatch(removeFromCauldron(item))}>
                                 -
                             </button>
                         </div>
