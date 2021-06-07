@@ -8,6 +8,7 @@ function StudyGroup() {
     const [buddyList, setBuddyList] = useState([]);
     const inputName = useRef(); //to get user input
     const inputImgURL = useRef();
+    const inputDescription = useRef();
 
     const [modal, setModal] = useState({ visible: false, name: "", imgURL: "", description: "" });
 
@@ -20,15 +21,15 @@ function StudyGroup() {
     function addCard() {
         let name = inputName.current.value;
         let imgURL = inputImgURL.current.value;
+        let description = inputDescription.current.value;
 
         if (name === "" || imgURL === "") return;
 
         setBuddyList((prevBuddyList) => {
-            // TODO why it knows prevBuddyList is buddyList???
-            return [...prevBuddyList, { name, imgURL }]; //"..." deconstruct; deep copy
+            return [...prevBuddyList, { name, imgURL, description }]; //"..." deconstruct; deep copy
         });
 
-        inputName.current.value = inputImgURL.current.value = null;
+        inputName.current.value = inputImgURL.current.value = inputDescription.current.value = null;
     }
 
     function removeCard() {
@@ -41,11 +42,11 @@ function StudyGroup() {
 
         setBuddyList(newBuddyList);
 
-        inputName.current.value = inputImgURL.current.value = null;
+        inputName.current.value = inputImgURL.current.value = inputDescription.current.value = null;
     }
 
     function clearInput() {
-        inputName.current.value = inputImgURL.current.value = null;
+        inputName.current.value = inputImgURL.current.value = inputDescription.current.value = null;
     }
 
     function clearAll() {
@@ -58,7 +59,7 @@ function StudyGroup() {
         newModal.visible = true;
         newModal.name = name;
         newModal.imgURL = imgURL;
-        newModal.description = description;
+        newModal.description = description === "" ? "No Description" : description;
         setModal(newModal);
     }
 
@@ -91,6 +92,15 @@ function StudyGroup() {
                     </label>
                     <br />
                     <input ref={inputImgURL} type="text" id="card-URL" name="url" />
+                    <br />
+                    <br />
+                </div>
+                <div className="card-input-wrapper">
+                    <label id="description-label" forhtml="card-URL">
+                        Add Buddy Description (Optional):
+                    </label>
+                    <br />
+                    <input ref={inputDescription} type="text" id="card-description" name="description" />
                     <br />
                     <br />
                 </div>

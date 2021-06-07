@@ -2,6 +2,8 @@ import "../css/Buddy.css";
 
 function Buddy(props) {
     function handleClick() {
+        console.log("name: ", props.name);
+        console.log("description: ", props.description);
         props.showModal(props.name, props.imgURL, props.description);
     }
 

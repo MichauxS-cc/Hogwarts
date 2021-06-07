@@ -6,7 +6,7 @@ function BuddyList(props) {
             {props.buddyList.map((buddy) => {
                 return (
                     <Buddy
-                        key={buddy.name}
+                        key={buddy.imgURL}
                         name={buddy.name}
                         imgURL={buddy.imgURL}
                         description={buddy.description}
