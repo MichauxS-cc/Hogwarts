@@ -14,6 +14,10 @@ function Summery(props) {
         props.closeModal();
     }
 
+    function handleClickResetCart() {
+        props.resetCart();
+    }
+
     return (
         <div className={`modal-container ${visible}`}>
             <button onClick={handleClick} className="modal-close">
@@ -63,7 +67,7 @@ function Summery(props) {
                         </div>
                         <hr />
                         <div className="flex">
-                            <button className="checkout-btn" onClick={() => alert("Order Received!")}>
+                            <button className="checkout-btn" onClick={handleClickResetCart}>
                                 Checkout
                             </button>
                         </div>

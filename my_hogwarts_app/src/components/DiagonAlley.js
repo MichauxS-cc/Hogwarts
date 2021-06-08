@@ -45,6 +45,10 @@ function DiagonAlley() {
         let newModal = { ...modal };
         newModal.visible = false;
         setModal(newModal);
+    }
+
+    function resetCart() {
+        alert("Order Received!");
         setCartItems([]);
     }
 
@@ -67,6 +71,7 @@ function DiagonAlley() {
                     addToCauldron={addToCauldron}
                     removeFromCauldron={removeFromCauldron}
                     cartItems={cartItems}
+                    resetCart={resetCart}
                 />
             </div>
         </div>
