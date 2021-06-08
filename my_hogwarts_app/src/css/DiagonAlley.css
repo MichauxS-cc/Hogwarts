@@ -44,7 +44,7 @@
     cursor: pointer;
     padding: 5px;
 }
-text-right {
+.text-right {
     text-align: right;
 }
 /*TODO need to be changed*/

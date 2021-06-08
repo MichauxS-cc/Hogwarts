@@ -45,6 +45,7 @@ function DiagonAlley() {
         let newModal = { ...modal };
         newModal.visible = false;
         setModal(newModal);
+        setCartItems([]);
     }
 
     return (
