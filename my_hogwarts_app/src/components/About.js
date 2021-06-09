@@ -13,7 +13,7 @@ function About() {
                     alt="Harry Potter fonts"
                 ></img>
             </h1>
-            <video className="intro-video" controls autoplay source src={Video} type="video/mp4" />
+            <video className="intro-video" controls autoPlay source="true" src={Video} type="video/mp4" />
         </div>
     );
 }
