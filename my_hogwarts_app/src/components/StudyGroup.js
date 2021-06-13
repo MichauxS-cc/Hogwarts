@@ -2,18 +2,22 @@ import React, { useState, useRef, useEffect } from "react";
 import "../css/StudyGroup.css";
 import BuddyList from "./BuddyList.js";
 import Modal from "./Modal.js";
-import initialBuddyList from "../initial.json";
 
 function StudyGroup() {
     const [buddyList, setBuddyList] = useState([]);
     const inputName = useRef(); //to get user input
     const inputImgURL = useRef();
     const inputDescription = useRef();
+    const buddyListURL = "http://localhost:3000/buddies";
 
     const [modal, setModal] = useState({ visible: false, name: "", imgURL: "", description: "" });
 
     useEffect(() => {
-        setBuddyList(initialBuddyList); //set buddyList with initialBuddyList
+        fetch(buddyListURL)
+            .then((response) => response.json())
+            .then((buddyListData) => {
+                setBuddyList(buddyListData); //set buddyList with buddyListData
+            });
     }, []); // on first refresh
 
     // add card to buddyList by creating a new array with the new user input
@@ -25,9 +29,18 @@ function StudyGroup() {
 
         if (name === "" || imgURL === "") return;
 
-        setBuddyList((prevBuddyList) => {
-            return [...prevBuddyList, { name, imgURL, description }]; //"..." deconstruct; deep copy
-        });
+        fetch(buddyListURL + "/add", {
+            method: "POST",
+            body: JSON.stringify({ name: name, imgURL: imgURL, description: description }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((res) => res.json())
+            .then((buddyListData) => {
+                // console.log("result>>>>>>>>>>>>>>>>>>", result);
+                setBuddyList(buddyListData);
+            });
 
         inputName.current.value = inputImgURL.current.value = inputDescription.current.value = null;
     }
@@ -36,11 +49,25 @@ function StudyGroup() {
         let removeName = inputName.current.value;
 
         // create a new buddy list by filtering out the buddy with the given removeName
-        let newBuddyList = [...buddyList].filter((buddy) => {
-            if (buddy.name !== removeName) return buddy;
-        });
+        // let newBuddyList = [...buddyList].filter((buddy) => {
+        //     if (buddy.name !== removeName) return buddy;
+        // });
 
-        setBuddyList(newBuddyList);
+        // setBuddyList(newBuddyList);
+
+        fetch(buddyListURL + "/delete", {
+            method: "DELETE",
+            body: JSON.stringify({ removeName }),
+            headers: {
+                // "Access-Control-Allow-Credentials": true,
+                "Content-Type": "application/json",
+            },
+        })
+            .then((res) => res.json())
+            .then((buddyListData) => {
+                // console.log("result>>>>>>>>>>>>>>>>>>", result);
+                setBuddyList(buddyListData);
+            });
 
         inputName.current.value = inputImgURL.current.value = inputDescription.current.value = null;
     }
@@ -50,7 +77,16 @@ function StudyGroup() {
     }
 
     function clearAll() {
-        setBuddyList([]);
+        fetch(buddyListURL + "/delete_all", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((res) => res.json())
+            .then(() => {
+                setBuddyList([]);
+            });
     }
 
     // card click handler

@@ -4,7 +4,7 @@
     padding: 1rem;
     background: var(--primary-color);
 
-    position: absolute;
+    position: fixed;
     top: calc(137px + 2rem);
     left: 50%;
     transform: translate(-50%); /*50% of itself*/

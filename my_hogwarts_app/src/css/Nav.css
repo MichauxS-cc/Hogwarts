@@ -108,9 +108,7 @@ Mobile View
     top: 22px;
     padding: 8px 8px 4px;
 }
-.menu-icon:hover {
-    /* box-shadow: 2px 2px 5px orange, 0 0 35px rgb(250, 171, 97), 0 0 5px rgb(250, 223, 68); */
-}
+
 .menu-icon.active .menu-line:first-child {
     transform: translate(0px, 9px) rotate(45deg);
 }
