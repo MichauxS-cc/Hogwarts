@@ -65,4 +65,4 @@ router.delete("/delete_all", function (req, res, next) {
 
 module.exports = router;
 
-//testing connections with my new device
+//testing connections with my new device//testing connections with my new device
