@@ -16,6 +16,7 @@ function StudyGroup() {
     name: "",
     imgURL: "",
     description: "",
+    id: "",
   });
 
   useEffect(() => {
@@ -47,45 +48,24 @@ function StudyGroup() {
       },
     })
       .then((res) => res.json())
-      .then((buddyListData) => {
-        // console.log("result>>>>>>>>>>>>>>>>>>", result);
-        setBuddyList(buddyListData);
-      });
+      .then((buddyListData) => setBuddyList(buddyListData));
 
-    inputName.current.value =
-      inputImgURL.current.value =
-      inputDescription.current.value =
-        null;
+    clearInput();
   }
 
   function removeCard() {
     let removeName = inputName.current.value;
 
-    // create a new buddy list by filtering out the buddy with the given removeName
-    // let newBuddyList = [...buddyList].filter((buddy) => {
-    //     if (buddy.name !== removeName) return buddy;
-    // });
-
-    // setBuddyList(newBuddyList);
-
     fetch(buddyListURL + "/delete", {
       method: "DELETE",
       body: JSON.stringify({ removeName }),
       headers: {
-        // "Access-Control-Allow-Credentials": true,
         "Content-Type": "application/json",
       },
     })
       .then((res) => res.json())
-      .then((buddyListData) => {
-        // console.log("result>>>>>>>>>>>>>>>>>>", result);
-        setBuddyList(buddyListData);
-      });
-
-    inputName.current.value =
-      inputImgURL.current.value =
-      inputDescription.current.value =
-        null;
+      .then((buddyListData) => setBuddyList(buddyListData));
+    clearInput();
   }
 
   function clearInput() {
@@ -109,13 +89,15 @@ function StudyGroup() {
   }
 
   // card click handler
-  function showModal(name, imgURL, description) {
+  function showModal(name, imgURL, description, id) {
     let newModal = { ...modal };
     newModal.visible = true;
     newModal.isEditable = false;
     newModal.name = name;
     newModal.imgURL = imgURL;
     newModal.description = description === "" ? "No Description" : description;
+    newModal.id = id;
+
     setModal(newModal);
   }
 
@@ -125,18 +107,28 @@ function StudyGroup() {
     setModal(newModal);
   }
 
-  function switchMode(editModal) {
-    let newModal = { ...editModal };
-    newModal.isEditable = !editModal.isEditable;
+  function switchMode() {
+    let newModal = { ...modal };
+    newModal.isEditable = !modal.isEditable;
     setModal(newModal);
   }
 
-  function updateModal(newName, newDescription) {
-    let newModal = { ...modal };
-    newModal.name = newName;
-    newModal.description = newDescription;
-    newModal.isEditable = false;
-    setModal(newModal);
+  function updateModal(newName, newDescription, targetId) {
+    fetch(buddyListURL + "/update/" + targetId, {
+      method: "PATCH",
+      body: JSON.stringify({
+        name: newName,
+        description: newDescription,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((buddyListData) => {
+        setBuddyList(buddyListData);
+        closeModal();
+      });
   }
 
   return (

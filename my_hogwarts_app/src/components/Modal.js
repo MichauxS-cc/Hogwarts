@@ -1,5 +1,5 @@
 import "../css/Modal.css";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef } from "react";
 
 function Modal(props) {
   const editName = useRef();
@@ -16,59 +16,79 @@ function Modal(props) {
   }
 
   function finishEditing() {
-    console.log(editName + " in finishEditing " + editDescription);
-    props.updateModal(editName.current.value, editDescription.current.value);
+    props.updateModal(
+      editName.current.value,
+      editDescription.current.value,
+      props.modal.id
+    );
   }
 
-  return props.modal.isEditable ? (
-    <div className={`modal-container ${visible}`}>
-      <button onClick={handleClick} className="modal-close">
-        +
-      </button>
-      <div className="modal-card-container">
-        <div className="modal-img-wrapper">
-          <img className="modal-img" src={props.modal.imgURL} />
-        </div>
-        <div className="modal-text-wrapper">
-          <div>
-            <input ref={editName} type="text" defaultValue={props.modal.name} />
-            <input
-              ref={editDescription}
-              type="text"
-              defaultValue={props.modal.description}
+  function renderEditableComponent() {
+    return (
+      <div className={`modal-container ${visible}`}>
+        <button onClick={handleClick} className="modal-close">
+          +
+        </button>
+        <div className="modal-card-container">
+          <div className="modal-img-wrapper">
+            <img
+              className="modal-img"
+              src={props.modal.imgURL}
+              alt={props.modal.name}
             />
-            <button onClick={finishEditing} className="edit-btn">
-              {" "}
-              Done{" "}
-            </button>
+          </div>
+          <div className="modal-text-wrapper">
+            <div>
+              <input
+                ref={editName}
+                type="text"
+                defaultValue={props.modal.name}
+              />
+              <input
+                id="input-edit-description"
+                ref={editDescription}
+                type="text"
+                defaultValue={props.modal.description}
+              />
+              <button onClick={finishEditing} className="edit-btn">
+                {" "}
+                Done{" "}
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  ) : (
-    <div className={`modal-container ${visible}`}>
-      <button onClick={handleClick} className="modal-close">
-        +
-      </button>
-      <div className="modal-card-container">
-        <div className="modal-img-wrapper">
-          <img className="modal-img" src={props.modal.imgURL} />
-        </div>
-        <div className="modal-text-wrapper">
-          <div onDoubleClick={changeEditMode}>
-            <h3 className="modal-name">{props.modal.name}</h3>
-            <p className="modal-description">{props.modal.description}</p>
+    );
+  }
+
+  function renderNonEditableComponent() {
+    return (
+      <div className={`modal-container ${visible}`}>
+        <button onClick={handleClick} className="modal-close">
+          +
+        </button>
+        <div className="modal-card-container">
+          <div className="modal-img-wrapper">
+            <img
+              className="modal-img"
+              src={props.modal.imgURL}
+              alt={props.modal.name}
+            />
           </div>
-          {/*<h3 className="modal-name">{props.modal.name}</h3>
-          <p className="modal-description">{props.modal.description}</p>*/}
-          {/*<button onclick={handleEdit} className="edit-btn">
-            {" "}
-            Edit{" "}
-  </button>*/}
+          <div className="modal-text-wrapper">
+            <div onDoubleClick={changeEditMode}>
+              <h3 className="modal-name">{props.modal.name}</h3>
+              <p className="modal-description">{props.modal.description}</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  return props.modal.isEditable
+    ? renderEditableComponent()
+    : renderNonEditableComponent();
 }
 
 export default Modal;

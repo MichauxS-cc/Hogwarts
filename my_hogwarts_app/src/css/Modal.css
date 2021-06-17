@@ -50,6 +50,11 @@
 .modal-name {
   text-align: center;
 }
+/* #input-edit-description {
+  width: fit-content;
+  
+  white-space: nowrap;
+} */
 .edit-btn {
   height: 60px;
   width: 120px;

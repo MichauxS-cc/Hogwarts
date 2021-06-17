@@ -1,5 +1,5 @@
 import Buddy from "./Buddy.js";
-import uuid from "react-uuid";
+import { v4 as uuidv4 } from "uuid";
 
 function BuddyList(props) {
   return (
@@ -7,10 +7,11 @@ function BuddyList(props) {
       {props.buddyList.map((buddy) => {
         return (
           <Buddy
-            key={uuid()}
+            key={uuidv4()}
             name={buddy.name}
             imgURL={buddy.imgURL}
             description={buddy.description}
+            id={buddy.id}
             showModal={props.showModal}
           />
         );
