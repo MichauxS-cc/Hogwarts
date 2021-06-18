@@ -2,7 +2,7 @@
 
 import "../css/EquipList.css";
 import Equipment from "./Equipment.js";
-import uuid from "react-uuid";
+import { v4 as uuidv4 } from "uuid";
 
 function EquipList(props) {
   const { equipments, addToCauldron } = props;
@@ -10,7 +10,7 @@ function EquipList(props) {
     <div className="equipment-list">
       {equipments.map((equipment) => (
         <Equipment
-          key={uuid()}
+          key={uuidv4()}
           equipment={equipment}
           addToCauldron={addToCauldron}
         />

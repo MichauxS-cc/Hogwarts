@@ -3,12 +3,14 @@ import "../css/StudyGroup.css";
 import BuddyList from "./BuddyList.js";
 import Modal from "./Modal.js";
 
+import axios from "axios";
+
 function StudyGroup() {
   const [buddyList, setBuddyList] = useState([]);
   const inputName = useRef(); //to get user input
   const inputImgURL = useRef();
   const inputDescription = useRef();
-  const buddyListURL = "http://localhost:3000/buddies";
+  const buddyListURL = "http://localhost:3000/db";
 
   const [modal, setModal] = useState({
     visible: false,
@@ -19,13 +21,25 @@ function StudyGroup() {
     id: "",
   });
 
+  //   useEffect(() => {
+  //     async function fetchData() {
+  //       const response = await fetch(buddyListURL);
+  //       const buddyListData = await response.json();
+  //       setBuddyList(buddyListData);
+  //     }
+  //     fetchData();
+  //   }, []);
+
+  const getBuddylistData = async () => {
+    const response = await axios
+      .get(buddyListURL)
+      .catch((err) => console.log("Error *** first load: ", err));
+
+    if (response && response.data) setBuddyList(response.data);
+  };
   useEffect(() => {
-    fetch(buddyListURL)
-      .then((response) => response.json())
-      .then((buddyListData) => {
-        setBuddyList(buddyListData); //set buddyList with buddyListData
-      });
-  }, []); // on first refresh
+    getBuddylistData();
+  }, []);
 
   // add card to buddyList by creating a new array with the new user input
   // input: name, imgURL
@@ -34,37 +48,80 @@ function StudyGroup() {
     let imgURL = inputImgURL.current.value;
     let description = inputDescription.current.value;
 
-    if (name === "" || imgURL === "") return;
+    // if (name === "" || imgURL === "") return;
+    // const newBuddy = {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     name: name,
+    //     imgURL: imgURL,
+    //     description: description,
+    //   }),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // };
+    // fetch(buddyListURL + "/add", newBuddy)
+    //   .then((res) => res.json())
+    //   .then((buddyListData) => setBuddyList(buddyListData));
 
-    fetch(buddyListURL + "/add", {
-      method: "POST",
-      body: JSON.stringify({
-        name: name,
-        imgURL: imgURL,
-        description: description,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((buddyListData) => setBuddyList(buddyListData));
+    const newBuddy = {
+      name: name,
+      imgURL: imgURL,
+      description: description,
+    };
 
+    const addNewBuddy = async () => {
+      const response = await axios
+        .post(buddyListURL + "/add", newBuddy)
+        .catch((err) => {
+          alert("Error *** adding new buddy: " + err.response.data.message);
+        });
+
+      if (response && response.data) setBuddyList(response.data);
+    };
+
+    addNewBuddy();
     clearInput();
   }
 
   function removeCard() {
-    let removeName = inputName.current.value;
+    const removeName = inputName.current.value;
+    console.log(
+      "User wants to delete: " +
+        (removeName === "" ? "empty String" : removeName)
+    );
+    // fetch(buddyListURL + "/delete", {
+    //   method: "DELETE",
+    //   body: JSON.stringify({ removeName }),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then((buddyListData) => setBuddyList(buddyListData));
 
-    fetch(buddyListURL + "/delete", {
-      method: "DELETE",
-      body: JSON.stringify({ removeName }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((buddyListData) => setBuddyList(buddyListData));
+    // const removeBuddy = async () => {
+    //   const response = await axios
+    //     .delete(buddyListURL + "/delete/" + removeName)
+    //     .catch((err) => {
+    //       alert("Error *** remove a buddy: " + err.response.data.message);
+    //     });
+
+    //   if (response && response.data) setBuddyList(response.data);
+    // };
+    // removeBuddy();
+
+    const removeBuddy = async () => {
+      const response = await axios
+        .delete(buddyListURL + "/delete/", { params: { name: removeName } })
+        .catch((err) => {
+          alert("Error *** remove a buddy: " + err.response.data.message);
+        });
+
+      if (response && response.data) setBuddyList(response.data);
+    };
+    removeBuddy();
+
     clearInput();
   }
 
@@ -76,16 +133,28 @@ function StudyGroup() {
   }
 
   function clearAll() {
-    fetch(buddyListURL + "/delete_all", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then(() => {
-        setBuddyList([]);
-      });
+    // fetch(buddyListURL + "/delete_all", {
+    //   method: "DELETE",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then(() => {
+    //     setBuddyList([]);
+    //   });
+    const deleteAll = async () => {
+      const response = await axios
+        .delete(buddyListURL + "/delete_all")
+        .catch((err) => {
+          console.error(err);
+        });
+
+      if (response && response.data) setBuddyList(response.data);
+    };
+
+    deleteAll();
+    clearInput();
   }
 
   // card click handler
@@ -114,21 +183,40 @@ function StudyGroup() {
   }
 
   function updateModal(newName, newDescription, targetId) {
-    fetch(buddyListURL + "/update/" + targetId, {
-      method: "PATCH",
-      body: JSON.stringify({
-        name: newName,
-        description: newDescription,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((buddyListData) => {
-        setBuddyList(buddyListData);
-        closeModal();
-      });
+    // fetch(buddyListURL + "/update/" + targetId, {
+    //   method: "PATCH",
+    //   body: JSON.stringify({
+    //     name: newName,
+    //     description: newDescription,
+    //   }),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then((buddyListData) => {
+    //     setBuddyList(buddyListData);
+    //     closeModal();
+    //   });
+
+    const updateBuddyInfo = {
+      name: newName,
+      description: newDescription,
+    };
+
+    const updateBuddy = async () => {
+      const response = await axios
+        .patch(buddyListURL + "/update/" + targetId, updateBuddyInfo)
+        .catch((err) => {
+          alert("Error *** adding new buddy: " + err.response.data.message);
+        });
+
+      if (response && response.data) setBuddyList(response.data);
+    };
+
+    updateBuddy();
+    clearInput();
+    closeModal();
   }
 
   return (
