@@ -43,9 +43,9 @@ router.get("/", (req, res, next) => {
   res.send(buddyList);
 });
 
-router.get("/buddyList", (req, res, next) => {
-  res.send(buddyList);
-});
+// router.get("/buddyList", (req, res, next) => {
+//   res.send(buddyList);
+// });
 
 router.post("/add", (req, res, next) => {
   console.log("inside add: >>>>>>>>>");
@@ -149,5 +149,3 @@ router.patch("/update/:id", (req, res, next) => {
 });
 
 module.exports = router;
-
-//testing connections with my new device//testing connections with my new device
