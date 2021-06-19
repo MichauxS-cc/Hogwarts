@@ -1,5 +1,7 @@
 .modal-container {
   max-width: 720px;
+  max-height: 600px;
+  height: 60vh;
   width: 80%;
   padding: 1rem;
   background: var(--primary-color);
@@ -8,6 +10,8 @@
   top: calc(137px + 2rem);
   left: 50%;
   transform: translate(-50%); /*50% of itself*/
+
+  z-index: 3;
 }
 .modal-close {
   position: absolute;
@@ -27,34 +31,46 @@
   cursor: pointer;
 }
 .modal-card-container {
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
+  overflow: hidden;
 }
 .modal-img-wrapper {
   width: 50%;
 }
 .modal-text-wrapper {
   width: 50%;
+  height: 100%;
   padding: 15px;
   font-weight: 300;
   justify-content: center;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 .modal-close:hover {
   transform: rotate(135deg);
 }
 .modal-img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .modal-name {
   text-align: center;
 }
-/* #input-edit-description {
-  width: fit-content;
-  
-  white-space: nowrap;
-} */
+.modal-description {
+  overflow-y: scroll;
+}
+#input-edit-description {
+  /* width: fit-content; */
+  max-width: 100%;
+  width: 100%;
+  display: block;
+  line-height: 14px;
+}
 .edit-btn {
   height: 60px;
   width: 120px;
@@ -62,6 +78,7 @@
   background-size: 100% 100%;
   border: none;
   padding: 10px 20px;
+  margin: auto auto 0;
   text-align: center;
   display: inline-block;
   font-family: "Brush Script MT", cursive;

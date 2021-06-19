@@ -31,11 +31,9 @@ function StudyGroup() {
   //   }, []);
 
   const getBuddylistData = async () => {
-    const response = await axios
-      .get(buddyListURL)
-      .catch((err) => console.log("Error *** first load: ", err));
+    const response = await axios.get(buddyListURL);
 
-    if (response && response.data) setBuddyList(response.data);
+    if (response?.data) setBuddyList(response.data);
   };
   useEffect(() => {
     getBuddylistData();
@@ -48,21 +46,10 @@ function StudyGroup() {
     let imgURL = inputImgURL.current.value;
     let description = inputDescription.current.value;
 
-    // if (name === "" || imgURL === "") return;
-    // const newBuddy = {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     name: name,
-    //     imgURL: imgURL,
-    //     description: description,
-    //   }),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // };
-    // fetch(buddyListURL + "/add", newBuddy)
-    //   .then((res) => res.json())
-    //   .then((buddyListData) => setBuddyList(buddyListData));
+    if (name === "" || imgURL === "")
+      return alert(
+        "Error *** adding new buddy: user name and img url can't be empty"
+      );
 
     const newBuddy = {
       name: name,
@@ -71,13 +58,10 @@ function StudyGroup() {
     };
 
     const addNewBuddy = async () => {
-      const response = await axios
-        .post(buddyListURL + "/add", newBuddy)
-        .catch((err) => {
-          alert("Error *** adding new buddy: " + err.response.data.message);
-        });
+      const response = await axios.post(buddyListURL + "/add", newBuddy);
 
-      if (response && response.data) setBuddyList(response.data);
+      //optional chaining to check if response and response data both exist
+      if (response?.data) setBuddyList(response.data);
     };
 
     addNewBuddy();
@@ -90,33 +74,23 @@ function StudyGroup() {
       "User wants to delete: " +
         (removeName === "" ? "empty String" : removeName)
     );
-    // fetch(buddyListURL + "/delete", {
-    //   method: "DELETE",
-    //   body: JSON.stringify({ removeName }),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then((res) => res.json())
-    //   .then((buddyListData) => setBuddyList(buddyListData));
 
-    // const removeBuddy = async () => {
-    //   const response = await axios
-    //     .delete(buddyListURL + "/delete/" + removeName)
-    //     .catch((err) => {
-    //       alert("Error *** remove a buddy: " + err.response.data.message);
-    //     });
-
-    //   if (response && response.data) setBuddyList(response.data);
-    // };
-    // removeBuddy();
+    if (removeName === "") {
+      return alert(
+        "Error *** remove a buddy: Please enter a buddy name to remove"
+      );
+    }
+    const findTheBuddyToRemove = buddyList.find(
+      (buddy) => buddy.name === removeName
+    );
+    if (!findTheBuddyToRemove) {
+      return alert(removeName + " is not in your list.");
+    }
 
     const removeBuddy = async () => {
-      const response = await axios
-        .delete(buddyListURL + "/delete/", { params: { name: removeName } })
-        .catch((err) => {
-          alert("Error *** remove a buddy: " + err.response.data.message);
-        });
+      const response = await axios.delete(buddyListURL + "/delete/", {
+        params: { name: removeName },
+      });
 
       if (response && response.data) setBuddyList(response.data);
     };
@@ -133,16 +107,6 @@ function StudyGroup() {
   }
 
   function clearAll() {
-    // fetch(buddyListURL + "/delete_all", {
-    //   method: "DELETE",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then((res) => res.json())
-    //   .then(() => {
-    //     setBuddyList([]);
-    //   });
     const deleteAll = async () => {
       const response = await axios
         .delete(buddyListURL + "/delete_all")
@@ -158,16 +122,23 @@ function StudyGroup() {
   }
 
   // card click handler
-  function showModal(name, imgURL, description, id) {
-    let newModal = { ...modal };
-    newModal.visible = true;
-    newModal.isEditable = false;
-    newModal.name = name;
-    newModal.imgURL = imgURL;
-    newModal.description = description === "" ? "No Description" : description;
-    newModal.id = id;
+  function showModal(id) {
+    const temp = buddyList.find((buddy) => buddy.id === id);
 
-    setModal(newModal);
+    temp.visible = true;
+    temp.isEditable = false;
+
+    setModal(temp);
+  }
+
+  function refreshModal(list) {
+    const id = modal.id;
+
+    const temp = list.find((buddy) => buddy.id === id);
+    const temp2 = { ...temp };
+    temp2.visible = true;
+    temp2.isEditable = false;
+    setModal(temp2);
   }
 
   function closeModal() {
@@ -183,22 +154,6 @@ function StudyGroup() {
   }
 
   function updateModal(newName, newDescription, targetId) {
-    // fetch(buddyListURL + "/update/" + targetId, {
-    //   method: "PATCH",
-    //   body: JSON.stringify({
-    //     name: newName,
-    //     description: newDescription,
-    //   }),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then((res) => res.json())
-    //   .then((buddyListData) => {
-    //     setBuddyList(buddyListData);
-    //     closeModal();
-    //   });
-
     const updateBuddyInfo = {
       name: newName,
       description: newDescription,
@@ -211,12 +166,15 @@ function StudyGroup() {
           alert("Error *** adding new buddy: " + err.response.data.message);
         });
 
-      if (response && response.data) setBuddyList(response.data);
+      if (response && response.data) {
+        setBuddyList(response.data);
+        refreshModal(response.data);
+      }
     };
 
     updateBuddy();
     clearInput();
-    closeModal();
+    switchMode();
   }
 
   return (

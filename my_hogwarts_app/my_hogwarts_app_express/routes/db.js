@@ -1,5 +1,4 @@
 var express = require("express");
-// const Joi = require("joi");
 var router = express.Router();
 const { v4: uuidv4 } = require("uuid");
 
@@ -43,22 +42,9 @@ router.get("/", (req, res, next) => {
   res.send(buddyList);
 });
 
-// router.get("/buddyList", (req, res, next) => {
-//   res.send(buddyList);
-// });
-
 router.post("/add", (req, res, next) => {
-  console.log("inside add: >>>>>>>>>");
-  // console.log("req.body is: " + JSON.stringify(req.body));
-  if (req.body.name === "" || req.body.imgURL === "") {
-    try {
-      throw new Error("Please enter the buddy name and URL.");
-    } catch (err) {
-      console.error("error is: " + err);
-      res.status(400).send({ message: "Please enter the buddy name and URL." });
-      return;
-    }
-  }
+  // console.log("inside add: >>>>>>>>>");
+
   const newBuddy = {
     name: req.body.name,
     imgURL: req.body.imgURL,
@@ -74,52 +60,9 @@ router.post("/add", (req, res, next) => {
   res.send(buddyList);
 });
 
-// router.delete("/delete/:removeName", (req, res, next) => {
-//   console.log("inside delete<<<<<<<<<<<<<<<<<<<<<<<<");
-//   const rName = req.params.removeName;
-//   console.log("removeName is: " + rName);
-
-//   if (rName === "") {
-//     try {
-//       throw new Error("Please enter a name to remove.");
-//     } catch (err) {
-//       console.error("error is: " + err);
-//       res.status(400).send({ message: "Please enter a name to remove." });
-//       return;
-//     }
-//   }
-//   let i = 0;
-//   for (; i < buddyList.length; i++) {
-//     if (buddyList[i].name === rName) break;
-//   }
-//   buddyList.splice(i, 1);
-//   res.send(buddyList);
-// });
-
 router.delete("/delete", (req, res, next) => {
-  console.log("inside delete<<<<<<<<<<<<<<<<<<<<<<<<");
+  // console.log("inside delete<<<<<<<<<<<<<<<<<<<<<<<<");
   const rName = req.query.name;
-  // console.log(
-  //   "removeName is: " +
-  //     (req.query.name === ""
-  //       ? "Empty string, should through error"
-  //       : req.query.name)
-  // );
-
-  if (rName === "") {
-    try {
-      throw new Error("Please enter a name to remove.");
-    } catch (err) {
-      console.error("error is: " + err);
-      res.status(400).send({ message: "Please enter a name to remove." });
-      return;
-    }
-  }
-  const findTheBuddyToRemove = buddyList.find((buddy) => buddy.name === rName);
-  if (!findTheBuddyToRemove) {
-    res.status(400).send({ message: rName + " is not in your list." });
-    return;
-  }
   let i = 0;
   for (; i < buddyList.length; i++) {
     if (buddyList[i].name === rName) break;
@@ -129,17 +72,17 @@ router.delete("/delete", (req, res, next) => {
 });
 
 router.delete("/delete_all", (req, res, next) => {
-  console.log("inside delete_all: >>>>>>>>>");
+  // console.log("inside delete_all: >>>>>>>>>");
 
   buddyList = [];
   res.send(buddyList);
 });
 
 router.patch("/update/:id", (req, res, next) => {
-  console.log("inside update: >>>>>>>>>");
+  // console.log("inside update: >>>>>>>>>");
 
   const targetId = req.params.id;
-  console.log("update() received id is: " + targetId);
+  // console.log("update() received id is: " + targetId);
 
   const buddyToBeUpdated = buddyList.find((buddy) => buddy.id === targetId);
   buddyToBeUpdated.name = req.body.name;

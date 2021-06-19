@@ -5,7 +5,7 @@ function Buddy(props) {
     console.log("name: ", props.name);
     console.log("description: ", props.description);
 
-    props.showModal(props.name, props.imgURL, props.description, props.id);
+    props.showModal(props.id);
   }
 
   return (

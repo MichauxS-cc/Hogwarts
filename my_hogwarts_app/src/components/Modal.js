@@ -44,15 +44,15 @@ function Modal(props) {
                 type="text"
                 defaultValue={props.modal.name}
               />
-              <input
+              <textarea
                 id="input-edit-description"
                 ref={editDescription}
                 type="text"
+                rows="10"
                 defaultValue={props.modal.description}
               />
               <button onClick={finishEditing} className="edit-btn">
-                {" "}
-                Done{" "}
+                Done
               </button>
             </div>
           </div>
@@ -76,10 +76,11 @@ function Modal(props) {
             />
           </div>
           <div className="modal-text-wrapper">
-            <div onDoubleClick={changeEditMode}>
-              <h3 className="modal-name">{props.modal.name}</h3>
-              <p className="modal-description">{props.modal.description}</p>
-            </div>
+            <h3 className="modal-name">{props.modal.name}</h3>
+            <p className="modal-description">{props.modal.description}</p>
+            <button onClick={changeEditMode} className="edit-btn">
+              Edit
+            </button>
           </div>
         </div>
       </div>
