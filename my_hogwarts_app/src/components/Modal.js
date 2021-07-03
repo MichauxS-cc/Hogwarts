@@ -19,8 +19,9 @@ function Modal(props) {
     props.updateModal(
       editName.current.value,
       editDescription.current.value,
-      props.modal.id
+      props.modal._id
     );
+    console.log("[ props.modal ]", props.modal._id);
   }
 
   function renderEditableComponent() {

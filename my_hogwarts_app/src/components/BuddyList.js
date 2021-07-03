@@ -11,7 +11,7 @@ function BuddyList(props) {
             name={buddy.name}
             imgURL={buddy.imgURL}
             description={buddy.description}
-            id={buddy.id}
+            id={buddy._id}
             showModal={props.showModal}
           />
         );

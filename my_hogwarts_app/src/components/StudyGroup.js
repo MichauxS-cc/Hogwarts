@@ -10,7 +10,7 @@ function StudyGroup() {
   const inputName = useRef(); //to get user input
   const inputImgURL = useRef();
   const inputDescription = useRef();
-  const buddyListURL = "http://localhost:3000/db";
+  const buddyListURL = "http://localhost:3000/db/buddy";
 
   const [modal, setModal] = useState({
     visible: false,
@@ -18,17 +18,12 @@ function StudyGroup() {
     name: "",
     imgURL: "",
     description: "",
-    id: "",
+    _id: "",
   });
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       const response = await fetch(buddyListURL);
-  //       const buddyListData = await response.json();
-  //       setBuddyList(buddyListData);
-  //     }
-  //     fetchData();
-  //   }, []);
+  useEffect(() => {
+    // console.log("[ modal ]", modal);
+  }, [modal]);
 
   const getBuddylistData = async () => {
     const response = await axios.get(buddyListURL);
@@ -123,7 +118,7 @@ function StudyGroup() {
 
   // card click handler
   function showModal(id) {
-    const temp = buddyList.find((buddy) => buddy.id === id);
+    const temp = buddyList.find((buddy) => buddy._id === id);
 
     temp.visible = true;
     temp.isEditable = false;
@@ -132,9 +127,9 @@ function StudyGroup() {
   }
 
   function refreshModal(list) {
-    const id = modal.id;
+    const id = modal._id;
 
-    const temp = list.find((buddy) => buddy.id === id);
+    const temp = list.find((buddy) => buddy._id === id);
     const temp2 = { ...temp };
     temp2.visible = true;
     temp2.isEditable = false;
@@ -154,6 +149,11 @@ function StudyGroup() {
   }
 
   function updateModal(newName, newDescription, targetId) {
+    console.log(
+      "%c [ targetId ]",
+      "font-size:13px; background:pink; color:#bf2c9f;",
+      targetId
+    );
     const updateBuddyInfo = {
       name: newName,
       description: newDescription,
@@ -167,6 +167,12 @@ function StudyGroup() {
         });
 
       if (response && response.data) {
+        console.log(
+          "%c [ response.data ]",
+          "font-size:13px; background:pink; color:#bf2c9f;",
+          response.data
+        );
+
         setBuddyList(response.data);
         refreshModal(response.data);
       }

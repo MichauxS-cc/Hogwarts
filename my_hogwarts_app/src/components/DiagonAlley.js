@@ -11,7 +11,8 @@ import axios from "axios";
 
 function DiagonAlley() {
   const [equipments, setEquipments] = useState([]);
-  const equipmentDataURL = "http://localhost:3000/equipDb";
+  // const equipmentDataURL = "http://localhost:3000/equipDb";
+  const equipmentDataURL = "http://localhost:3000/db/equipment";
 
   const yearSelect = useRef();
   const catSelect = useRef();
@@ -91,13 +92,6 @@ function DiagonAlley() {
   }
 
   function sortByPriceLH() {
-    // const sortedData = async () => {
-    //   const response = await axios
-    //     .get(equipmentDataURL + "/sortLtoH")
-    //     // .catch((err) => console.log("Error *** sort data L to H: ", err));
-    //   if (response && response.data) setEquipments(response.data);
-    // };
-    // sortedData();
     const newEquips = [...equipments];
     newEquips.sort((a, b) => {
       return a.price - b.price;
