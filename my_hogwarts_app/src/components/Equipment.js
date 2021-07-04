@@ -1,9 +1,13 @@
 // logic were borrow from https://www.youtube.com/watch?v=AmIdY1Eb8tY
 
 import "../css/Equipment.css";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCauldron } from "../actions";
 
 function Equipment(props) {
-  const { equipment, addToCauldron } = props;
+  const dispatch = useDispatch();
+  const { equipment } = props;
+
   return (
     <div className="equipment-container">
       <div className="equipment-wrapper">
@@ -19,7 +23,7 @@ function Equipment(props) {
         <div>
           <button
             className="equipment-btn"
-            onClick={() => addToCauldron(equipment)}
+            onClick={() => dispatch(addToCauldron(equipment))}
           >
             Add To Cauldron
           </button>

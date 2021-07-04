@@ -2,17 +2,19 @@
 
 import "../css/EquipList.css";
 import Equipment from "./Equipment.js";
+import { useSelector } from "react-redux";
 // import { v4 as uuidv4 } from "uuid";
 
-function EquipList(props) {
-  const { equipments, addToCauldron } = props;
+function EquipList() {
+  const equipmentList = useSelector((state) => state.equipmentList);
+
   return (
     <div className="equipment-list">
-      {equipments.map((equipment) => (
+      {equipmentList.map((equipment) => (
         <Equipment
           key={equipment._id}
           equipment={equipment}
-          addToCauldron={addToCauldron}
+          // addToCauldron={addToCauldron}
         />
       ))}
     </div>

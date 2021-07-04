@@ -1,7 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import ShoppingCart from "./ShoppingCart.js";
+import Summary from "./Summary.js";
+import { useSelector, useDispatch } from "react-redux";
 
 function Nav(props) {
+  const cartItems = useSelector((state) => state.cartItems);
   return (
     <>
       <select id="userSelect">
@@ -36,6 +40,8 @@ function Nav(props) {
           </Link>
         </li>
       </ul>
+      <ShoppingCart countEquipments={cartItems.length} />
+      <Summary />
     </>
   );
 }
