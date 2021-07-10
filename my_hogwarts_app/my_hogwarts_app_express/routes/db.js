@@ -1,5 +1,3 @@
-// require("dotenv").config();
-
 var express = require("express");
 var router = express.Router();
 const mongoose = require("mongoose");
@@ -36,8 +34,6 @@ router.get("/buddy", (req, res, next) => {
 });
 
 router.post("/buddy/add", async (req, res, next) => {
-  // console.log("inside add: >>>>>>>>>");
-
   try {
     const newBuddy = {
       name: req.body.name,
@@ -52,14 +48,9 @@ router.post("/buddy/add", async (req, res, next) => {
   } catch (err) {
     console.log(err);
   }
-
-  // buddyList.push(newBuddy);
-
-  // res.send(buddyList);
 });
 
 router.delete("/buddy/delete", async (req, res, next) => {
-  // console.log("inside delete<<<<<<<<<<<<<<<<<<<<<<<<");
   const rName = req.query.name;
   try {
     await buddyDB.collection.deleteOne({ name: rName });
@@ -71,15 +62,12 @@ router.delete("/buddy/delete", async (req, res, next) => {
 });
 
 router.delete("/buddy/delete_all", (req, res, next) => {
-  // console.log("inside delete_all: >>>>>>>>>");
   buddyDB.collection.drop({}, function (err, data) {
     res.send([]);
   });
 });
 
 router.patch("/buddy/update/:id", async (req, res, next) => {
-  // console.log("inside update: >>>>>>>>>");
-
   const targetId = req.params.id;
 
   try {
@@ -98,6 +86,41 @@ router.patch("/buddy/update/:id", async (req, res, next) => {
 /* Equipment Query*/
 router.get("/equipment", (req, res, next) => {
   equipmentDB.find({}, function (err, data) {
+    res.send(data);
+  });
+});
+
+router.get("/equipment/sortHtoL", (req, res, next) => {
+  equipmentDB
+    .find({})
+    .sort({ price: -1 })
+    .exec(function (err, data) {
+      res.send(data);
+    });
+});
+
+router.get("/equipment/sortLtoH", (req, res, next) => {
+  equipmentDB
+    .find({})
+    .sort({ price: 1 })
+    .exec(function (err, data) {
+      res.send(data);
+    });
+});
+
+router.get("/equipment/sortByYear/:year/filterCat/:cat", (req, res, next) => {
+  let year = parseInt(req.params.year);
+  let cat = req.params.cat;
+  let filter = {};
+
+  if (year !== 0 && year) {
+    filter.year = year;
+  }
+  if (cat !== "all" && cat) {
+    filter.cat = cat;
+  }
+
+  equipmentDB.find(filter, function (err, data) {
     res.send(data);
   });
 });

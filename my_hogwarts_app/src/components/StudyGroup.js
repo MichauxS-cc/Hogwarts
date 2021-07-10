@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setBuddyList } from "../actions";
 import "../css/StudyGroup.css";
 import BuddyList from "./BuddyList.js";
 import Modal from "./Modal.js";
@@ -6,33 +8,22 @@ import Modal from "./Modal.js";
 import axios from "axios";
 
 function StudyGroup() {
-  const [buddyList, setBuddyList] = useState([]);
   const inputName = useRef(); //to get user input
   const inputImgURL = useRef();
   const inputDescription = useRef();
+
+  const buddyList = useSelector((state) => state.buddyList);
+  const dispatch = useDispatch();
   const buddyListURL = "http://localhost:3000/db/buddy";
 
-  const [modal, setModal] = useState({
-    visible: false,
-    isEditable: false,
-    name: "",
-    imgURL: "",
-    description: "",
-    _id: "",
-  });
-
   useEffect(() => {
-    // console.log("[ modal ]", modal);
-  }, [modal]);
+    const getBuddylistData = async () => {
+      const response = await axios.get(buddyListURL);
 
-  const getBuddylistData = async () => {
-    const response = await axios.get(buddyListURL);
-
-    if (response?.data) setBuddyList(response.data);
-  };
-  useEffect(() => {
+      if (response?.data) dispatch(setBuddyList(response.data));
+    };
     getBuddylistData();
-  }, []);
+  }, [dispatch]);
 
   // add card to buddyList by creating a new array with the new user input
   // input: name, imgURL
@@ -56,7 +47,7 @@ function StudyGroup() {
       const response = await axios.post(buddyListURL + "/add", newBuddy);
 
       //optional chaining to check if response and response data both exist
-      if (response?.data) setBuddyList(response.data);
+      if (response?.data) dispatch(setBuddyList(response.data));
     };
 
     addNewBuddy();
@@ -87,7 +78,7 @@ function StudyGroup() {
         params: { name: removeName },
       });
 
-      if (response && response.data) setBuddyList(response.data);
+      if (response && response.data) dispatch(setBuddyList(response.data));
     };
     removeBuddy();
 
@@ -109,78 +100,11 @@ function StudyGroup() {
           console.error(err);
         });
 
-      if (response && response.data) setBuddyList(response.data);
+      if (response && response.data) dispatch(setBuddyList(response.data));
     };
 
     deleteAll();
     clearInput();
-  }
-
-  // card click handler
-  function showModal(id) {
-    const temp = buddyList.find((buddy) => buddy._id === id);
-
-    temp.visible = true;
-    temp.isEditable = false;
-
-    setModal(temp);
-  }
-
-  function refreshModal(list) {
-    const id = modal._id;
-
-    const temp = list.find((buddy) => buddy._id === id);
-    const temp2 = { ...temp };
-    temp2.visible = true;
-    temp2.isEditable = false;
-    setModal(temp2);
-  }
-
-  function closeModal() {
-    let newModal = { ...modal };
-    newModal.visible = false;
-    setModal(newModal);
-  }
-
-  function switchMode() {
-    let newModal = { ...modal };
-    newModal.isEditable = !modal.isEditable;
-    setModal(newModal);
-  }
-
-  function updateModal(newName, newDescription, targetId) {
-    console.log(
-      "%c [ targetId ]",
-      "font-size:13px; background:pink; color:#bf2c9f;",
-      targetId
-    );
-    const updateBuddyInfo = {
-      name: newName,
-      description: newDescription,
-    };
-
-    const updateBuddy = async () => {
-      const response = await axios
-        .patch(buddyListURL + "/update/" + targetId, updateBuddyInfo)
-        .catch((err) => {
-          alert("Error *** adding new buddy: " + err.response.data.message);
-        });
-
-      if (response && response.data) {
-        console.log(
-          "%c [ response.data ]",
-          "font-size:13px; background:pink; color:#bf2c9f;",
-          response.data
-        );
-
-        setBuddyList(response.data);
-        refreshModal(response.data);
-      }
-    };
-
-    updateBuddy();
-    clearInput();
-    switchMode();
   }
 
   return (
@@ -257,13 +181,8 @@ function StudyGroup() {
         </div>
       </form>
 
-      <BuddyList buddyList={buddyList} showModal={showModal} />
-      <Modal
-        modal={modal}
-        closeModal={closeModal}
-        switchMode={switchMode}
-        updateModal={updateModal}
-      />
+      <BuddyList buddyList={buddyList} />
+      <Modal />
     </div>
   );
 }

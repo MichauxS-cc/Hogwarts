@@ -1,8 +1,9 @@
 const ShoppingCartReducer = (state = [], action) => {
-  let equip = action.payload;
+  let equip;
   let exist;
   switch (action.type) {
     case "ADD_TO_CART":
+      equip = action.payload;
       exist = state.find((x) => x.name === equip.name);
       //loop through state, only update the x that x => x.name === equip.name, return the not matching item otherwise
       if (exist)
@@ -11,6 +12,7 @@ const ShoppingCartReducer = (state = [], action) => {
         );
       return [...state, { ...equip, qty: 1 }];
     case "REMOVE_FROM_CART":
+      equip = action.payload;
       exist = state.find((x) => x.name === equip.name);
       if (exist.qty === 1)
         return [...state].filter((x) => x.name !== equip.name);

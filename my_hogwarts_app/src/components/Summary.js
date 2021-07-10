@@ -2,14 +2,13 @@
 import "../css/Summery.css";
 
 import { useSelector, useDispatch } from "react-redux";
-import { hideSummary, addToCauldron, removeFromCauldron } from "../actions";
+import { hideSummary, addToCart, removeFromCart, resetCart } from "../actions";
 
-function Summary(props) {
+function Summary() {
   const cartItems = useSelector((state) => state.cartItems);
   const summary = useSelector((state) => state.summary);
   const dispatch = useDispatch();
 
-  //   const { cartItems, addToCauldron, removeFromCauldron } = props;
   const itemsPrice = cartItems.reduce(
     (accumulator, currentItem) =>
       accumulator + currentItem.price * currentItem.qty,
@@ -20,14 +19,6 @@ function Summary(props) {
   const totalPrice = itemsPrice + taxPrice + shippingPrice;
   let visible = "hidden";
   if (summary.visible) visible = "visible";
-
-  //   function handleClick() {
-  //     props.closeModal();
-  //   }
-
-  function handleClickResetCart() {
-    props.resetCart();
-  }
 
   return (
     <div className={`modal-container ${visible}`}>
@@ -43,13 +34,13 @@ function Summary(props) {
             <div className="col-2">
               <button
                 className="add-btn"
-                onClick={() => dispatch(addToCauldron(item))}
+                onClick={() => dispatch(addToCart(item))}
               >
                 +
               </button>
               <button
                 className="remove-btn"
-                onClick={() => dispatch(removeFromCauldron(item))}
+                onClick={() => dispatch(removeFromCart(item))}
               >
                 -
               </button>
@@ -86,7 +77,10 @@ function Summary(props) {
             </div>
             <hr />
             <div className="flex">
-              <button className="checkout-btn" onClick={handleClickResetCart}>
+              <button
+                className="checkout-btn"
+                onClick={() => dispatch(resetCart())}
+              >
                 Checkout
               </button>
             </div>

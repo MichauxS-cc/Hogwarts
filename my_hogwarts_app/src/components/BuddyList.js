@@ -1,18 +1,19 @@
 import Buddy from "./Buddy.js";
-import { v4 as uuidv4 } from "uuid";
+import { useSelector } from "react-redux";
 
 function BuddyList(props) {
+  const buddyList = useSelector((state) => state.buddyList);
+
   return (
     <div className="card-deck" id="img-container">
-      {props.buddyList.map((buddy) => {
+      {buddyList.map((buddy) => {
         return (
           <Buddy
-            key={uuidv4()}
+            key={buddy._id}
             name={buddy.name}
             imgURL={buddy.imgURL}
             description={buddy.description}
-            id={buddy._id}
-            showModal={props.showModal}
+            _id={buddy._id}
           />
         );
       })}

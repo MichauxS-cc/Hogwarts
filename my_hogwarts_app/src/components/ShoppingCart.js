@@ -2,11 +2,11 @@ import "../css/ShoppingCart.css";
 import ShoppingCartImgURL from "../pics/cauldron.png";
 
 import { useSelector, useDispatch } from "react-redux";
-import { showSummary, hideSummary } from "../actions";
+import { showSummary } from "../actions";
 
 function ShoppingCart(props) {
   const cartItems = useSelector((state) => state.cartItems);
-  const summary = useSelector((state) => state.summary);
+  //   const summary = useSelector((state) => state.summary);
   const dispatch = useDispatch();
 
   return (

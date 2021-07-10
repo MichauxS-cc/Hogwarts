@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+// import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ShoppingCart from "./ShoppingCart.js";
 import Summary from "./Summary.js";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-function Nav(props) {
+function Nav() {
   const cartItems = useSelector((state) => state.cartItems);
   return (
     <>

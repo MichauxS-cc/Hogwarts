@@ -1,56 +1,70 @@
 import "../css/Modal.css";
 import React, { useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  closeModal,
+  switchModalMode,
+  updateModal,
+  setBuddyList,
+} from "../actions";
+import axios from "axios";
 
-function Modal(props) {
+function Modal() {
+  const buddyListURL = "http://localhost:3000/db/buddy";
+  const modal = useSelector((state) => state.cardModal);
+  const dispatch = useDispatch();
+
   const editName = useRef();
   const editDescription = useRef();
   let visible = "hidden";
-  if (props.modal.visible) visible = "visible";
-
-  function changeEditMode() {
-    props.switchMode(props.modal);
-  }
-
-  function handleClick() {
-    props.closeModal();
-  }
+  if (modal.visible) visible = "visible";
 
   function finishEditing() {
-    props.updateModal(
-      editName.current.value,
-      editDescription.current.value,
-      props.modal._id
-    );
-    console.log("[ props.modal ]", props.modal._id);
+    const updateBuddyInfo = {
+      name: editName.current.value,
+      description: editDescription.current.value,
+    };
+
+    const updateBuddy = async () => {
+      const response = await axios
+        .patch(buddyListURL + "/update/" + modal._id, updateBuddyInfo)
+        .catch((err) => {
+          alert("Error *** adding new buddy: " + err.response.data.message);
+        });
+
+      if (response?.data) {
+        dispatch(setBuddyList(response.data));
+        dispatch(switchModalMode());
+        dispatch(
+          updateModal({
+            name: updateBuddyInfo.name,
+            description: updateBuddyInfo.description,
+          })
+        );
+      }
+    };
+    updateBuddy();
   }
 
   function renderEditableComponent() {
     return (
       <div className={`modal-container ${visible}`}>
-        <button onClick={handleClick} className="modal-close">
+        <button onClick={() => dispatch(closeModal())} className="modal-close">
           +
         </button>
         <div className="modal-card-container">
           <div className="modal-img-wrapper">
-            <img
-              className="modal-img"
-              src={props.modal.imgURL}
-              alt={props.modal.name}
-            />
+            <img className="modal-img" src={modal.imgURL} alt={modal.name} />
           </div>
           <div className="modal-text-wrapper">
             <div>
-              <input
-                ref={editName}
-                type="text"
-                defaultValue={props.modal.name}
-              />
+              <input ref={editName} type="text" defaultValue={modal.name} />
               <textarea
                 id="input-edit-description"
                 ref={editDescription}
                 type="text"
                 rows="10"
-                defaultValue={props.modal.description}
+                defaultValue={modal.description}
               />
               <button onClick={finishEditing} className="edit-btn">
                 Done
@@ -65,21 +79,20 @@ function Modal(props) {
   function renderNonEditableComponent() {
     return (
       <div className={`modal-container ${visible}`}>
-        <button onClick={handleClick} className="modal-close">
+        <button onClick={() => dispatch(closeModal())} className="modal-close">
           +
         </button>
         <div className="modal-card-container">
           <div className="modal-img-wrapper">
-            <img
-              className="modal-img"
-              src={props.modal.imgURL}
-              alt={props.modal.name}
-            />
+            <img className="modal-img" src={modal.imgURL} alt={modal.name} />
           </div>
           <div className="modal-text-wrapper">
-            <h3 className="modal-name">{props.modal.name}</h3>
-            <p className="modal-description">{props.modal.description}</p>
-            <button onClick={changeEditMode} className="edit-btn">
+            <h3 className="modal-name">{modal.name}</h3>
+            <p className="modal-description">{modal.description}</p>
+            <button
+              onClick={() => dispatch(switchModalMode())}
+              className="edit-btn"
+            >
               Edit
             </button>
           </div>
@@ -88,7 +101,7 @@ function Modal(props) {
     );
   }
 
-  return props.modal.isEditable
+  return modal.isEditable
     ? renderEditableComponent()
     : renderNonEditableComponent();
 }

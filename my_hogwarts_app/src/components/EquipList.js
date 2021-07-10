@@ -11,11 +11,7 @@ function EquipList() {
   return (
     <div className="equipment-list">
       {equipmentList.map((equipment) => (
-        <Equipment
-          key={equipment._id}
-          equipment={equipment}
-          // addToCauldron={addToCauldron}
-        />
+        <Equipment key={equipment._id} equipment={equipment} />
       ))}
     </div>
   );
