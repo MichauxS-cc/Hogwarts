@@ -24,7 +24,7 @@ db.once("open", (err) => {
   console.log("Connected!");
 });
 
-const { get } = require("./equipDb");
+// const { get } = require("./equipDb");
 
 /* Buddy Query */
 router.get("/buddy", (req, res, next) => {
