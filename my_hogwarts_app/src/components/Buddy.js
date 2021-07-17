@@ -1,25 +1,38 @@
 import "../css/Buddy.css";
-import { useDispatch } from "react-redux";
-import { setModal } from "../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { setModal, setBuddyList } from "../actions";
+import axios from "axios";
 
 function Buddy(props) {
-  const dispatch = useDispatch();
+  const buddyListURL = "http://localhost:3000/db/buddy";
 
+  const dispatch = useDispatch();
+  const buddyList = useSelector((state) => state.buddyList);
+
+  async function removeBuddy(buddyId) {
+    const response = await axios.delete(buddyListURL + "/deleteById/", {
+      params: { _id: buddyId },
+    });
+    if (response && response.data) dispatch(setBuddyList(response.data));
+  }
   return (
-    <div
-      className="buddy-container"
-      onClick={() =>
-        dispatch(
-          setModal({
-            name: props.name,
-            imgURL: props.imgURL,
-            description: props.description,
-            _id: props._id,
-          })
-        )
-      }
-    >
-      <div className="buddy-wrapper">
+    <div className="buddy-container">
+      <button onClick={() => removeBuddy(props._id)} className="remove-btn">
+        +
+      </button>
+      <div
+        className="buddy-wrapper"
+        onClick={() =>
+          dispatch(
+            setModal({
+              name: props.name,
+              imgURL: props.imgURL,
+              description: props.description,
+              _id: props._id,
+            })
+          )
+        }
+      >
         <img className="buddy-img" src={props.imgURL} alt={props.name} />
         <div className="buddy-name">{props.name}</div>
       </div>

@@ -1,7 +1,7 @@
 import Buddy from "./Buddy.js";
 import { useSelector } from "react-redux";
 
-function BuddyList(props) {
+function BuddyList() {
   const buddyList = useSelector((state) => state.buddyList);
 
   return (

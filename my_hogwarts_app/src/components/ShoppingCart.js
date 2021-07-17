@@ -6,7 +6,6 @@ import { showSummary } from "../actions";
 
 function ShoppingCart(props) {
   const cartItems = useSelector((state) => state.cartItems);
-  //   const summary = useSelector((state) => state.summary);
   const dispatch = useDispatch();
 
   return (

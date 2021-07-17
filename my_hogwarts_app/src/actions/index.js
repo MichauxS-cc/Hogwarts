@@ -82,3 +82,16 @@ export const setBuddyList = (buddyList) => {
     payload: buddyList,
   };
 };
+
+// export const removeBuddy = (buddyId, buddyList) => async (dispatch) => {
+//   try {
+//     //axios remove buddy using buddyId
+//     await axios.delete(buddyListURL + "/delete/", {
+//       params: { _id: buddyId },
+//     });
+//     await dispatch(setBuddyList(buddyList));
+//     console.log("[ HELLO ]");
+//   } catch (err) {
+//     console.log("[ err ]", err);
+//   }
+// };

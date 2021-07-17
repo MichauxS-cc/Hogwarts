@@ -3,7 +3,6 @@
 import "../css/EquipList.css";
 import Equipment from "./Equipment.js";
 import { useSelector } from "react-redux";
-// import { v4 as uuidv4 } from "uuid";
 
 function EquipList() {
   const equipmentList = useSelector((state) => state.equipmentList);

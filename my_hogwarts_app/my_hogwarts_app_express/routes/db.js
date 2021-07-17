@@ -50,10 +50,23 @@ router.post("/buddy/add", async (req, res, next) => {
   }
 });
 
-router.delete("/buddy/delete", async (req, res, next) => {
-  const rName = req.query.name;
+// router.delete("/buddy/delete", async (req, res, next) => {
+//   const rName = req.query.name;
+//   try {
+//     await buddyDB.collection.deleteOne({ name: rName });
+//     let data = await buddyDB.find({});
+//     res.send(data);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
+
+router.delete("/buddy/deleteById", async (req, res, next) => {
+  const buddyId = req.query._id;
   try {
-    await buddyDB.collection.deleteOne({ name: rName });
+    await buddyDB.collection.deleteOne({
+      _id: mongoose.Types.ObjectId(buddyId),
+    });
     let data = await buddyDB.find({});
     res.send(data);
   } catch (err) {
