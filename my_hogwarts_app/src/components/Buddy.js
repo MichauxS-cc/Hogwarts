@@ -4,7 +4,7 @@ import { setModal, setBuddyList } from "../actions";
 import axios from "axios";
 
 function Buddy(props) {
-  const buddyListURL = "http://localhost:3000/db/buddy";
+  const buddyListURL = "/db/buddy";
 
   const dispatch = useDispatch();
   const buddyList = useSelector((state) => state.buddyList);
