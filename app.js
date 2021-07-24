@@ -19,10 +19,10 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "my_hogwarts_app/public")));
 app.use(cors());
 
-app.use(express.static("https://my-hogwarts-app.herokuapp.com/"));
+// app.use(express.static(""));
 // app.use("/db/index", indexRouter);
 // app.use("/db/db", dbRouter);
 // app.use("/equipDb", equipmentsRouter);
