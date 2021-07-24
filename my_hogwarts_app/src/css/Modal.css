@@ -1,0 +1,96 @@
+.modal-container {
+  max-width: 720px;
+  max-height: 600px;
+  height: 60vh;
+  width: 80%;
+  padding: 1rem;
+  background: var(--primary-color);
+
+  position: fixed;
+  top: calc(137px + 2rem);
+  left: 50%;
+  transform: translate(-50%); /*50% of itself*/
+
+  z-index: 3;
+}
+.modal-close {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  font-size: 36px;
+  transform: rotate(45deg);
+  transition: 0.3s;
+  transform-origin: 50% 50%;
+  padding: 0;
+  background: var(--primary-color);
+  color: white;
+  cursor: pointer;
+}
+.modal-card-container {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  overflow: hidden;
+}
+.modal-img-wrapper {
+  width: 50%;
+}
+.modal-text-wrapper {
+  width: 50%;
+  height: 100%;
+  padding: 15px;
+  font-weight: 300;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.modal-close:hover {
+  transform: rotate(135deg);
+}
+.modal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.modal-name {
+  text-align: center;
+}
+.modal-description {
+  overflow-y: scroll;
+}
+#input-edit-description {
+  /* width: fit-content; */
+  max-width: 100%;
+  width: 100%;
+  display: block;
+  line-height: 14px;
+}
+.edit-btn {
+  height: 60px;
+  width: 120px;
+  background: url("../pics/burnPaper.png") center no-repeat;
+  background-size: 100% 100%;
+  border: none;
+  padding: 10px 20px;
+  margin: auto auto 0;
+  text-align: center;
+  display: inline-block;
+  font-family: "Brush Script MT", cursive;
+  font-family: fantasy;
+  font-weight: bold;
+  font-size: 16px;
+  transition: 0.3s;
+}
+.edit-btn:hover {
+  transform: scale(1.2);
+}
+
+.hidden {
+  display: none;
+}
