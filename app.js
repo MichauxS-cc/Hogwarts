@@ -31,8 +31,8 @@ app.use(cors());
 //   res.sendFile(path.join(__dirname, "my_hogwarts_app/build", "index.html"));
 // });
 // app.use(express.static(""));
-// app.use("/db/index", indexRouter);
-// app.use("/db/db", dbRouter);
+app.use("/db/index", indexRouter);
+app.use("/db", dbRouter);
 // app.use("/equipDb", equipmentsRouter);
 
 // catch 404 and forward to error handler
