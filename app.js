@@ -32,9 +32,9 @@ app.use(cors());
 //   res.sendFile(path.join(__dirname, "my_hogwarts_app/build", "index.html"));
 // });
 // app.use(express.static(""));
-app.use("/index", indexRouter);
+app.use("/", indexRouter);
 app.use("/db", dbRouter);
-// app.use("/equipDb", equipmentsRouter);
+app.use("/equipDb", equipmentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
