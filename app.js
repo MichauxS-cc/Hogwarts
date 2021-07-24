@@ -23,8 +23,8 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use(express.static("https://my-hogwarts-app.herokuapp.com/"));
-app.use("/db/index", indexRouter);
-app.use("/db/db", dbRouter);
+// app.use("/db/index", indexRouter);
+// app.use("/db/db", dbRouter);
 // app.use("/equipDb", equipmentsRouter);
 
 // catch 404 and forward to error handler
