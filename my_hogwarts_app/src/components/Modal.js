@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 
 function Modal() {
-  const buddyListURL = "http://localhost:3000/db/buddy";
+  const buddyListURL = "/db/buddy";
   const modal = useSelector((state) => state.cardModal);
   const dispatch = useDispatch();
 

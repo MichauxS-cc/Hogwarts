@@ -12,7 +12,7 @@ import axios from "axios";
 function DiagonAlley() {
   // const equipmentList = useSelector((state) => state.equipmentList);
   const dispatch = useDispatch();
-  const equipmentDataURL = "http://localhost:3000/db/equipment";
+  const equipmentDataURL = "/db/equipment";
   const yearSelect = useRef();
   const catSelect = useRef();
 
