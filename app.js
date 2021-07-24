@@ -15,6 +15,7 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "build")));
 
 app.get("/*", (req, res) => {
@@ -31,7 +32,7 @@ app.use(cors());
 //   res.sendFile(path.join(__dirname, "my_hogwarts_app/build", "index.html"));
 // });
 // app.use(express.static(""));
-app.use("/db/index", indexRouter);
+app.use("/index", indexRouter);
 app.use("/db", dbRouter);
 // app.use("/equipDb", equipmentsRouter);
 
