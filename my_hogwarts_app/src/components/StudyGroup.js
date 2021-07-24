@@ -14,7 +14,7 @@ function StudyGroup() {
 
   const buddyList = useSelector((state) => state.buddyList);
   const dispatch = useDispatch();
-  const buddyListURL = "http://localhost:3000/db/buddy";
+  const buddyListURL = "/db/buddy";
 
   useEffect(() => {
     const getBuddylistData = async () => {
