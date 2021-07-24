@@ -11,22 +11,22 @@ import Courses from "./components/Courses.js";
 import DiagonAlley from "./components/DiagonAlley.js";
 
 function App() {
-    return (
-        <div className="App">
-            <Router>
-                <Topbar />
-                <DesktopNav />
-                <MobileNav />
-                <Switch>
-                    <Route path="/" exact component={Home}></Route>
-                    <Route path="/about" component={About}></Route>
-                    <Route path="/study-group" component={StudyGroup}></Route>
-                    <Route path="/courses" component={Courses}></Route>
-                    <Route path="/diagon-alley" component={DiagonAlley}></Route>
-                </Switch>
-            </Router>
-        </div>
-    );
+  return (
+    <div className="App">
+      <Router>
+        <Topbar />
+        <DesktopNav />
+        <MobileNav />
+        <Switch>
+          <Route path="/" exact component={Home}></Route>
+          <Route path="/about" component={About}></Route>
+          <Route path="/study-group" component={StudyGroup}></Route>
+          <Route path="/courses" component={Courses}></Route>
+          <Route path="/diagon-alley" component={DiagonAlley}></Route>
+        </Switch>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
