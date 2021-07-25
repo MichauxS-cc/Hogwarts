@@ -21,7 +21,7 @@ function Buddy(props) {
         onClick={() => removeBuddy(props._id)}
         className="remove-buddy-btn"
       >
-        -
+        +
       </button>
       <div
         className="buddy-wrapper"
