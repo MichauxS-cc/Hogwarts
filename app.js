@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(cors());
 
 // app.use((req, res, next) => {
-//   res.sendFile(path.join(__dirname, "my_hogwarts_app/build", "index.html"));
+//    res.sendFile(path.join(__dirname, "my_hogwarts_app/build", "index.html"));
 // });
 // app.use(express.static(""));
 // app.use("/db/", indexRouter);
