@@ -27,13 +27,13 @@ db.once("open", (err) => {
 // const { get } = require("./equipDb");
 
 /* Buddy Query */
-router.get("/db/buddy", (req, res, next) => {
+router.get("/buddy", (req, res, next) => {
   buddyDB.find({}, function (err, data) {
     res.send(data);
   });
 });
 
-router.post("/db/buddy/add", async (req, res, next) => {
+router.post("/buddy/add", async (req, res, next) => {
   try {
     const newBuddy = {
       name: req.body.name,
@@ -61,7 +61,7 @@ router.post("/db/buddy/add", async (req, res, next) => {
 //   }
 // });
 
-router.delete("/db/buddy/deleteById", async (req, res, next) => {
+router.delete("/buddy/deleteById", async (req, res, next) => {
   const buddyId = req.query._id;
   try {
     await buddyDB.collection.deleteOne({
@@ -74,13 +74,13 @@ router.delete("/db/buddy/deleteById", async (req, res, next) => {
   }
 });
 
-router.delete("/db/buddy/delete_all", (req, res, next) => {
+router.delete("/buddy/delete_all", (req, res, next) => {
   buddyDB.collection.drop({}, function (err, data) {
     res.send([]);
   });
 });
 
-router.patch("/db/buddy/update/:id", async (req, res, next) => {
+router.patch("/buddy/update/:id", async (req, res, next) => {
   const targetId = req.params.id;
 
   try {
@@ -97,13 +97,13 @@ router.patch("/db/buddy/update/:id", async (req, res, next) => {
 });
 
 /* Equipment Query*/
-router.get("/db/equipment", (req, res, next) => {
+router.get("/equipment", (req, res, next) => {
   equipmentDB.find({}, function (err, data) {
     res.send(data);
   });
 });
 
-router.get("/db/equipment/sortHtoL", (req, res, next) => {
+router.get("/equipment/sortHtoL", (req, res, next) => {
   equipmentDB
     .find({})
     .sort({ price: -1 })
@@ -112,7 +112,7 @@ router.get("/db/equipment/sortHtoL", (req, res, next) => {
     });
 });
 
-router.get("/db/equipment/sortLtoH", (req, res, next) => {
+router.get("/equipment/sortLtoH", (req, res, next) => {
   equipmentDB
     .find({})
     .sort({ price: 1 })
@@ -121,24 +121,21 @@ router.get("/db/equipment/sortLtoH", (req, res, next) => {
     });
 });
 
-router.get(
-  "/db/equipment/sortByYear/:year/filterCat/:cat",
-  (req, res, next) => {
-    let year = parseInt(req.params.year);
-    let cat = req.params.cat;
-    let filter = {};
+router.get("/equipment/sortByYear/:year/filterCat/:cat", (req, res, next) => {
+  let year = parseInt(req.params.year);
+  let cat = req.params.cat;
+  let filter = {};
 
-    if (year !== 0 && year) {
-      filter.year = year;
-    }
-    if (cat !== "all" && cat) {
-      filter.cat = cat;
-    }
-
-    equipmentDB.find(filter, function (err, data) {
-      res.send(data);
-    });
+  if (year !== 0 && year) {
+    filter.year = year;
   }
-);
+  if (cat !== "all" && cat) {
+    filter.cat = cat;
+  }
+
+  equipmentDB.find(filter, function (err, data) {
+    res.send(data);
+  });
+});
 
 module.exports = router;
