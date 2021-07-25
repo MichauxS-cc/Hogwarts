@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "build": "webpack",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix my-hogwarts-app && npm run build --prefix my-hogwarts-app"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix my-hogwarts-app && npm run build --prefix my-hogwarts-app",
+    "homepage": "/my-hogwarts-app/build"
   },
   "dependencies": {
     "axios": "^0.21.1",
