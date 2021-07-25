@@ -15,32 +15,19 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  heroku-deploy:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.17.0]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          node-version: ${{ matrix.node-version }}
-        # with:
-        #   heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-        #   heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-        #   heroku_email: ${{ secrets.HEROKU_EMAIL }}
-      - run: git push heroku main
-        env:
-          CI: false
-
-        #       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
 
       # # Runs a single command using the runners shell
       # - name: Run a one-line script
