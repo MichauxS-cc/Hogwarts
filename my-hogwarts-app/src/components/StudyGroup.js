@@ -119,7 +119,7 @@ function StudyGroup() {
       <form id="card-selection-form">
         <div className="card-input-wrapper">
           <label id="name-label" forhtml="card-name">
-            Buddy's Name:
+            Buddy Name:
           </label>
           <br />
           <input ref={inputName} type="text" id="card-name" name="cname" />
