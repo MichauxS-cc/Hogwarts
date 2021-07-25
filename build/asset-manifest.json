@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.b66f94ac.chunk.css",
-    "main.js": "/static/js/main.292ad7eb.chunk.js",
-    "main.js.map": "/static/js/main.292ad7eb.chunk.js.map",
+    "main.css": "/static/css/main.7259a540.chunk.css",
+    "main.js": "/static/js/main.9b363598.chunk.js",
+    "main.js.map": "/static/js/main.9b363598.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.51acd4bd.js",
     "runtime-main.js.map": "/static/js/runtime-main.51acd4bd.js.map",
     "static/js/2.980a1b72.chunk.js": "/static/js/2.980a1b72.chunk.js",
     "static/js/2.980a1b72.chunk.js.map": "/static/js/2.980a1b72.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.b66f94ac.chunk.css.map": "/static/css/main.b66f94ac.chunk.css.map",
+    "static/css/main.7259a540.chunk.css.map": "/static/css/main.7259a540.chunk.css.map",
     "static/js/2.980a1b72.chunk.js.LICENSE.txt": "/static/js/2.980a1b72.chunk.js.LICENSE.txt",
     "static/media/Dark Arts.166a3f17.png": "/static/media/Dark Arts.166a3f17.png",
     "static/media/Defence Against the Dark Arts.a681b0e6.png": "/static/media/Defence Against the Dark Arts.a681b0e6.png",
@@ -22,7 +22,7 @@
   "entrypoints": [
     "static/js/runtime-main.51acd4bd.js",
     "static/js/2.980a1b72.chunk.js",
-    "static/css/main.b66f94ac.chunk.css",
-    "static/js/main.292ad7eb.chunk.js"
+    "static/css/main.7259a540.chunk.css",
+    "static/js/main.9b363598.chunk.js"
   ]
 }

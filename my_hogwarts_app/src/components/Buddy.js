@@ -17,8 +17,11 @@ function Buddy(props) {
   }
   return (
     <div className="buddy-container">
-      <button onClick={() => removeBuddy(props._id)} className="remove-btn">
-        +
+      <button
+        onClick={() => removeBuddy(props._id)}
+        className="remove-buddy-btn"
+      >
+        -
       </button>
       <div
         className="buddy-wrapper"
