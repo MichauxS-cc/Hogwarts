@@ -37,6 +37,9 @@ jobs:
         #   heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
         #   heroku_email: ${{ secrets.HEROKU_EMAIL }}
       - run: cd my-hogwarts-app && npm install && npm run build
+        env:
+          CI: false
+
         #       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
 
       # # Runs a single command using the runners shell
