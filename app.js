@@ -33,7 +33,7 @@ app.use("/db", dbRouter);
 // app.use("/equipDb", equipmentsRouter);
 
 app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "my-hogwarts-app", "build", "index.html"));
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 // catch 404 and forward to error handler
