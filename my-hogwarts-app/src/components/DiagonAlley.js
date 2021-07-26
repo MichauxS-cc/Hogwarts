@@ -46,8 +46,13 @@ function DiagonAlley() {
   }
 
   function sortByPriceHL() {
+    let year = yearSelect.current.value;
+    let cat = catSelect.current.value;
+
     const sortHtoL = async () => {
-      const response = await axios.get(equipmentDataURL + "/sortHtoL");
+      const response = await axios.get(
+        equipmentDataURL + "/year/" + year + "/cat/" + cat + "/sortHtoL"
+      );
 
       if (response?.data) {
         dispatch(setEquipmentList(response.data));
@@ -57,8 +62,13 @@ function DiagonAlley() {
   }
 
   function sortByPriceLH() {
+    let year = yearSelect.current.value;
+    let cat = catSelect.current.value;
+
     const sortLtoH = async () => {
-      const response = await axios.get(equipmentDataURL + "/sortLtoH");
+      const response = await axios.get(
+        equipmentDataURL + "/year/" + year + "/cat/" + cat + "/sortLtoH"
+      );
 
       if (response?.data) {
         dispatch(setEquipmentList(response.data));

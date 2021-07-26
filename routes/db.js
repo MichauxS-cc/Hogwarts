@@ -103,18 +103,37 @@ router.get("/equipment", (req, res, next) => {
   });
 });
 
-router.get("/equipment/sortHtoL", (req, res, next) => {
+function getFilter(year, cat) {
+  let filter = {};
+  if (year !== 0 && year) {
+    filter.year = year;
+  }
+  if (cat !== "all" && cat) {
+    filter.cat = cat;
+  }
+  return filter;
+}
+
+router.get("/equipment/year/:year/cat/:cat/sortHtoL", (req, res, next) => {
+  let year = parseInt(req.params.year);
+  let cat = req.params.cat;
+  let filter = getFilter(year, cat);
+
   equipmentDB
-    .find({})
+    .find(filter)
     .sort({ price: -1 })
     .exec(function (err, data) {
       res.send(data);
     });
 });
 
-router.get("/equipment/sortLtoH", (req, res, next) => {
+router.get("/equipment/year/:year/cat/:cat/sortLtoH", (req, res, next) => {
+  let year = parseInt(req.params.year);
+  let cat = req.params.cat;
+  let filter = getFilter(year, cat);
+
   equipmentDB
-    .find({})
+    .find(filter)
     .sort({ price: 1 })
     .exec(function (err, data) {
       res.send(data);
@@ -124,14 +143,15 @@ router.get("/equipment/sortLtoH", (req, res, next) => {
 router.get("/equipment/sortByYear/:year/filterCat/:cat", (req, res, next) => {
   let year = parseInt(req.params.year);
   let cat = req.params.cat;
-  let filter = {};
+  // let filter = {};
+  let filter = getFilter(year, cat);
 
-  if (year !== 0 && year) {
-    filter.year = year;
-  }
-  if (cat !== "all" && cat) {
-    filter.cat = cat;
-  }
+  // if (year !== 0 && year) {
+  //   filter.year = year;
+  // }
+  // if (cat !== "all" && cat) {
+  //   filter.cat = cat;
+  // }
 
   equipmentDB.find(filter, function (err, data) {
     res.send(data);
