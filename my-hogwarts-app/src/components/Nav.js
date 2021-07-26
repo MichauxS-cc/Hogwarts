@@ -8,11 +8,11 @@ function Nav() {
   const cartItems = useSelector((state) => state.cartItems);
   return (
     <>
-      <select id="userSelect">
+      {/* <select id="userSelect">
         <option value="paul">Paul </option>
         <option value="michaux">Michaux</option>
         <option value="john-doe">John Doe</option>
-      </select>
+      </select> */}
       <ul>
         <li>
           <Link to="/" className="header-links">
