@@ -9,4 +9,4 @@ const BuddyReducer = (state = {}, action) => {
   }
 };
 
-export default SummaryReducer;
+export default BuddyReducer;
