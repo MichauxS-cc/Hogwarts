@@ -1,28 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.7259a540.chunk.css",
-    "main.js": "/static/js/main.b2cda2b7.chunk.js",
-    "main.js.map": "/static/js/main.b2cda2b7.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.51acd4bd.js",
-    "runtime-main.js.map": "/static/js/runtime-main.51acd4bd.js.map",
-    "static/js/2.980a1b72.chunk.js": "/static/js/2.980a1b72.chunk.js",
-    "static/js/2.980a1b72.chunk.js.map": "/static/js/2.980a1b72.chunk.js.map",
+    "main.css": "/static/css/main.5e7cc4d6.css",
+    "main.js": "/static/js/main.4d4db378.js",
+    "static/media/Hogwarts.mp4": "/static/media/Hogwarts.4efa4409b981cb7456dc.mp4",
+    "static/media/burnPaper.png": "/static/media/burnPaper.64e4e8fb562925ef2e11.png",
+    "static/media/shoppingBG.png": "/static/media/shoppingBG.bd358014eccb43505fce.png",
+    "static/media/HogwartsBG-1.jpg": "/static/media/HogwartsBG-1.bcc97f519648b8408a8b.jpg",
+    "static/media/Defence Against the Dark Arts.png": "/static/media/Defence Against the Dark Arts.a681b0e62dce348a7c05.png",
+    "static/media/Potion-Course.png": "/static/media/Potion-Course.ec4c7ebc95312c214a06.png",
+    "static/media/Dark Arts.png": "/static/media/Dark Arts.166a3f17ecbd9d9b8c81.png",
+    "static/media/cauldron.png": "/static/media/cauldron.7609bf4b01ece3c1629d.png",
+    "static/media/Divination.png": "/static/media/Divination.a269f1a3f9eb9c7019d3.png",
+    "static/media/gsLogo.png": "/static/media/gsLogo.a15f96bcce4e967c75f0.png",
+    "static/media/CharmBook.png": "/static/media/CharmBook.f4b35823fbdd324416c9.png",
     "index.html": "/index.html",
-    "static/css/main.7259a540.chunk.css.map": "/static/css/main.7259a540.chunk.css.map",
-    "static/js/2.980a1b72.chunk.js.LICENSE.txt": "/static/js/2.980a1b72.chunk.js.LICENSE.txt",
-    "static/media/Dark Arts.166a3f17.png": "/static/media/Dark Arts.166a3f17.png",
-    "static/media/Defence Against the Dark Arts.a681b0e6.png": "/static/media/Defence Against the Dark Arts.a681b0e6.png",
-    "static/media/Hogwarts.4efa4409.mp4": "/static/media/Hogwarts.4efa4409.mp4",
-    "static/media/App.css": "/static/media/HogwartsBG-1.fea9eb75.jpg",
-    "static/media/Modal.css": "/static/media/burnPaper.64e4e8fb.png",
-    "static/media/cauldron.7609bf4b.png": "/static/media/cauldron.7609bf4b.png",
-    "static/media/gsLogo.a15f96bc.png": "/static/media/gsLogo.a15f96bc.png",
-    "static/media/DiagonAlley.css": "/static/media/shoppingBG.bd358014.png"
+    "main.5e7cc4d6.css.map": "/static/css/main.5e7cc4d6.css.map",
+    "main.4d4db378.js.map": "/static/js/main.4d4db378.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.51acd4bd.js",
-    "static/js/2.980a1b72.chunk.js",
-    "static/css/main.7259a540.chunk.css",
-    "static/js/main.b2cda2b7.chunk.js"
+    "static/css/main.5e7cc4d6.css",
+    "static/js/main.4d4db378.js"
   ]
 }

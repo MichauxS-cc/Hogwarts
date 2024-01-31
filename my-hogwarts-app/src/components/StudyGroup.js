@@ -154,7 +154,7 @@ function StudyGroup() {
             className="btn btn-add"
             type="button"
           >
-            Add
+            Add New Buddy
           </button>
           <button
             onClick={() => removeCard()}

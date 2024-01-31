@@ -1,8 +1,10 @@
 .course-container {
-    width: 50%;
+    width: 100%;
     height: 100%;
     position: relative;
     padding: 5px;
+    margin: auto;
+    color: white;
 }
 .course-wrapper {
     width: 100%;
@@ -13,6 +15,7 @@
     align-items: center;
     padding: 10px;
     position: relative;
+    margin:auto;
 }
 .course-wrapper:hover .course-img {
     filter: brightness(50%);
@@ -33,6 +36,7 @@
     transition: 0.3s;
     color: white;
     font-weight: 400;
+    width: 100%;
 }
 .course-wrapper:hover .course-description {
     opacity: 1;
@@ -40,11 +44,10 @@
 
 /* Desktop */
 @media only screen and (min-width: 768px) {
-    .course-container {
-        width: 25%;
-    }
     .course-wrapper {
         height: 30vw;
+        width: 25%;
         max-height: 340px;
+        margin:auto;
     }
 }

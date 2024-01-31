@@ -3,3 +3,6 @@
     flex-wrap: wrap;
     align-items: stretch;
 }
+.course-list > .carousel-root {
+    width: 100%;
+}

@@ -7,6 +7,7 @@ function Acourse(props) {
                 <img className="course-img" src={props.imgURL} alt={props.name} />
                 <div className="course-description">{props.description}</div>
             </div>
+            <p><b>{props.description}</b></p>
         </div>
     );
 }
